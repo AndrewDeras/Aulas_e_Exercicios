@@ -15,21 +15,21 @@ const customers = [
 
 for (let i = 0; i < customers.length; i++) {
     const customersName = customers[i].name;
-    select.innerHTML += `<option id="value${i + 1} "value="${customersName}">${customersName}</option>`;
+    select.innerHTML += `<option value="${customersName}">${customersName}</option>`;
 }
 
-select.addEventListener('change', (event)=>{
+select.addEventListener('change', (event) => {
     var selectElement = event.target;
     var nameSelect = selectElement.value;
 
     for (let i = 0; i < customers.length; i++) {
         const customer = customers[i];
 
-        if (nameSelect === customer.name){
-            nome.textContent = customer.name
-            cpf.textContent = customer.cpf
-            celular.textContent = customer.celular
-        }  
+        if (nameSelect === customer.name) {
+            nome.textContent = customer.name;
+            cpf.textContent = customer.cpf;
+            celular.textContent = customer.celular;
+        } 
     }
 })
 
