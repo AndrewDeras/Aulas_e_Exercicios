@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65"
+      crossorigin="anonymous"
+    />
+
+    <title>Exercicio 2</title>
+  </head>
+  <body class="bg-dark">
+
+      <select
+        id="customers"
+        class="form-select w-50 container mt-5"
+        aria-label="Default select example"
+      >
+        <option selected>NOMES</option>
+      </select>
+    <div
+      class="container col-12 table-responsive mask d-flex align-items-center h-100 p-5"
+    >
+      <table class="table table-dark table-bordered mb-0 ">
+        <thead>
+          <tr>
+            <th scope="col">NOME</th>
+            <th scope="col">CPF</th>
+            <th scope="col">CELULAR</th>
+          </tr>
+        </thead>
+        <tbody id="tableBody">
+          <tr>
+            <td id="nome"></td>
+            <td id="cpf"></td>
+            <td id="celular"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <script src="./main.js"></script>
+  </body>
+</html>
