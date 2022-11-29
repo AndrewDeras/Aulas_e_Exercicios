@@ -1,0 +1,40 @@
+
+class Canetas {
+
+    constructor(marca, modelo, cor) {
+        this.marca = marca
+        this.modelo = modelo
+        this.cor = cor
+    }
+
+
+};
+
+class FabricaCaneta {
+    constructor(numCanetas) {
+        this.num = numCanetas;
+        this.canetas = [];
+    }
+
+    fabricar(marca, modelo, cor) {
+        for (let i = 0; i < this.numCanetas; i++) {
+            this.canetas[i] = new Canetas(marca[i], modelo[i], cor[i])
+        }
+        return this.canetas
+    }
+};
+
+var marcas = ['bic', 'fabercastell'];
+
+var modelos = ['ponta fina'];
+
+var cores = ['preta', 'vermelha'];
+
+var qtdCanetas = new FabricaCaneta(2);
+
+var canetasfabricadas = new Canetas(marcas, modelos, cores);
+
+console.log(canetasfabricadas);
+
+
+

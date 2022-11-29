@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+header{
+    background: green;
+    height: 33.3vh;
+}
+main{
+    background: yellow;
+    height: 33.3vh;
+}
+footer{
+    background: red;
+    height: 33.3vh;
+}
+header, main, footer{
+    margin-right: 10%;
+    margin-left: 10%;
+    text-align: center;
+    padding: 20px 20px;
+}
