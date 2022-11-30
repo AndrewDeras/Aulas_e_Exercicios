@@ -2,9 +2,7 @@ const buttonCor = document.querySelector('#cor');
 const buttonTextCor = document.querySelector('#textCor');
 const buttonText = document.querySelector('#changeText');
 const texto = document.querySelector('#texto');
-console.log(texto);
 
-const body = document.body;
 
 function generateColor() {
     const letters = '0123456789ABCDEF';
@@ -13,31 +11,30 @@ function generateColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-}
+};
 
 function randomText() {
     var result = ''
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    var charactersLength = characters.length;
     for ( var i = 0; i < 150; i++ ) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
     }
     return result;
-}
+};
 
 
 buttonCor.addEventListener('click', () => {
-    body.style.background = generateColor()
+    document.body.style.background = generateColor();
 });
 
 
 buttonTextCor.addEventListener('click', () => {
-    body.style.color = generateColor()
+    document.body.style.color = generateColor();
 });
 
 buttonText.addEventListener('click', ()=>{
-    texto.textContent = randomText()
-})
+    texto.textContent = randomText();
+});
 
 
 

@@ -16,22 +16,23 @@ const customers = [
 for (let i = 0; i < customers.length; i++) {
     const customersName = customers[i].name;
     select.innerHTML += `<option value="${customersName}">${customersName}</option>`;
-}
 
-select.addEventListener('change', (event) => {
-    var selectElement = event.target;
-    var nameSelect = selectElement.value;
+    select.addEventListener('change', (event) => {
+        let selectElement = event.target;
+        let nameSelect = selectElement.value;
 
-    for (let i = 0; i < customers.length; i++) {
         const customer = customers[i];
 
         if (nameSelect === customer.name) {
             nome.textContent = customer.name;
             cpf.textContent = customer.cpf;
             celular.textContent = customer.celular;
-        } 
-    }
-})
+        }
+
+    })
+}
+
+
 
 
 
