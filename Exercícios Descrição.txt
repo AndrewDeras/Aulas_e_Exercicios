@@ -1,0 +1,47 @@
+OBS: O Design da página pode ser simples e fica a critério de vocês. Pode usar bootstrap se quiser.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 1: DONE
+	- Fazer um botão que ao clicar mude a cor de fundo da página para uma cor aleatória em hexadecimal.
+	- Fazer um botão que ao clicar mude a cor do texto da página para uma cor aleatória em hexadecimal.
+	- Fazer um botão que ao clicar mude o texto da página para um texto aletória de tamanho de 150 caracteres.
+Dica: Usar a biblioteca Math
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 2: DONE
+	- Fazer uma lista com a tag select com javascript contendo 5 clientes e só exibir as informações do cliente selecionado, selecionar pelo nome.
+	- As informações do cliente são nome, cpf e telefone.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 3: Comece modelando a classe do carrinho de compras.
+	- Criar 5 produtos, cada um tendo nome, imagem e preço.
+	- Fazer um carrinho de compras que possa:
+		- Exibir os produtos no carrinho.
+		- Adicionar um produto no carrinho.
+		- Remover um produto do carrinho.
+		- Preço total a pagar pelos produtos do carrinho.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 4: DONE
+	- Fazer a cor de funda da tela mudar aletório por um tempo grande.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 5: DONE
+	- Criar uma página contendo todas as tag HTML conhecidas e descrever pra que serve.
+	- Layout deve ser feito com a tag e ao lado da tag um texto com a descrição da tag.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 6:
+	- Criar um site de uma empresa ficticia que contenha: (usando bootstrap fica mais fácil).
+		- Uma faixa inicial com uma logo da empresa. (header)
+		- Um menu vertical ou horizontal, com submenus. (nav)
+		- 3 páginas: serviços, sobre e fale conosco. 
+		- um rodapé. (footer)
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 7: DONE
+	- Fazer uma função em JS que retorne true se um número é divisível por 2 e retorne false se não for divisivel por 2
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 8: DONE
+	- Fazer um função em JS que recebe um número e retorna true se o número é primo e false se o número não for primo
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 9: (HARD)
+	- Fazer uma função em JS que recebe um número N e retorna um array com os N primeiros números primos.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 10:
+	- Fazer um butão que ao clicar esconda o texto da tela e se clicado denovo mostre o texto novamente.
+OBS: usar tags do html
+-----------------------------------------------------------------------------------------------------------------------

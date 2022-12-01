@@ -1,0 +1,39 @@
+*{
+    text-align: center;
+}
+
+header{
+    margin: 20px;
+    border: 2px solid red ;
+}
+
+button{
+    margin: 20px;
+    padding: 10px;
+    color: white;
+    background: blue;
+    cursor: pointer;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 20px;
+    border: 2px solid black;
+}
+
+.img{
+    margin: 20px;
+    border:2px dotted green ;
+}
+
+.div{
+    margin: 20px;
+    border: 2px solid black;
+}
+
+footer{
+    margin-top: 10px;
+    border: 2px solid gold;
+}
