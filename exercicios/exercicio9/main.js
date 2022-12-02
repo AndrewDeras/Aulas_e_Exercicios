@@ -1,22 +1,24 @@
-let numbers = [];
-let newPrimeNumbersArray = []
-let individualNum = 0;
+let primeNumbersArray = []
 
-let numbersArray = (num) => {
-    for (let i = 0; i < num; i++) {
-        numbers.push(i)
-    }
-}
-
-numbersArray(10);
-
-console.log(numbers);
-
-const primeNumbersArray = numbers.filter((number) => {
+const isPrime = (number) => {
     for (let i = 2; i < number; i++)
         if (number % i === 0) {
-            return newPrimeNumbersArray.push(number);
+            return false;           
         }
-})
+    return number > 1;
+};
 
-primeNumbersArray
+const primeNumbers = (num)=>{
+    for (let i = 0; i <= num; i++) {
+        if(isPrime(i)){
+            primeNumbersArray.push(i)
+        }
+    }
+    return primeNumbersArray
+}
+
+console.log(primeNumbers(25));
+
+
+
+

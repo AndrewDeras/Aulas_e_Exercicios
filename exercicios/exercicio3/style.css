@@ -1,0 +1,124 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background: rgba(0, 0, 0, .5);
+}
+
+header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 10% 0 10%;
+}
+header div{
+    position: absolute;
+    right: 10%;
+}
+
+header div button{
+    cursor: pointer;
+    background: blue;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 15px;
+}
+
+/* .products{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 5% 0 5%;
+} */
+.store{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 20px 5% 0 5%;
+}
+
+.item{
+    box-shadow: black 0px 5px 15px;
+    background: white;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    width: 18%;
+}
+
+span{
+    text-align: center;
+    padding: 8px;
+}
+
+.cart{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 110%;
+    background: white;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.cart h2{
+    display: flex;
+    justify-content: center;
+}
+
+.cartItem{
+    border-bottom: 1px solid black;
+    margin: 0 10% 0 10%;
+    padding: 5px;
+    height: 15%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.cartItem div{
+    padding: 10px;
+}
+
+.qtd-btn button{
+    border: none;
+    border-radius: 5px;
+    background: blue;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+}
+
+.remove-btn{
+    border-radius: 5px;
+    border: none;
+    background: crimson;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+}
+.total{
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 10% 0 0;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: bold;
+}
+.total button{
+    cursor: pointer;
+    padding: 10px;
+    margin: 0 0 0 20px;
+    background: blue;
+    color: white;
+    border: none;
+    border-radius:  5px;
+}
