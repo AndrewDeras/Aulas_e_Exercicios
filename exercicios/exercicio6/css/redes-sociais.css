@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    /* background: black; */
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    /* border: 1px solid black; */
+    height: 8%;
+}
+
+header h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+    color: goldenrod;
+}
+
+
+nav {
+    /* border: 2px solid red ; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5%;
+}
+
+nav a {
+    margin: 10px;
+}
+
+nav button {
+    border: none;
+    border-radius: 5px;
+    background: blueviolet;
+    padding: 8px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Main */
+h3 {
+    font-family: 'Lobster', cursive;
+    font-size: 50px;
+    color: goldenrod;
+    padding: 20;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 150px;
+}
+
+main div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+main div button {
+    border: none;
+    border-radius: 5px;
+    background: black;
+    padding: 8px;
+    font-weight: bold;
+    color: white;
+}
+
+/* fim do main */
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+footer div {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px;
+}
