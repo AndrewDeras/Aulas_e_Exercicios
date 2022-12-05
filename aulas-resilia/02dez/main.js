@@ -28,11 +28,11 @@ const users = [
 
 
 const nomesAbv = users.map(({ nome }) => {
-    let fullName = nome.split(' ');
-    return `${fullName[0][0]}.${fullName[1][0]}`
+    let fullNameAbv = nome.split(' ');
+    return `${fullNameAbv[0][0]}.${fullNameAbv[1][0]}`
 })
 
-// console.log(nomesAbv);
+console.log(nomesAbv);
 
 
 
@@ -44,10 +44,7 @@ users.map(({ nome, animal }) => {
     }
 });
 
-const split = gostaDeGatos.split(' ')
 
-
-console.log(split);
 
 let maiores = [];
 
@@ -60,4 +57,4 @@ const soMaioresDeIdade = users.map(user => {
 
 
 
-// console.log(maiores);
+console.log(maiores);

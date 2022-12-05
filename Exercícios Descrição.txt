@@ -28,7 +28,7 @@ Exercício 5: DONE
 	- Criar uma página contendo todas as tag HTML conhecidas e descrever pra que serve.
 	- Layout deve ser feito com a tag e ao lado da tag um texto com a descrição da tag.
 -----------------------------------------------------------------------------------------------------------------------
-Exercício 6:
+Exercício 6: done
 	- Criar um site de uma empresa ficticia que contenha: (usando bootstrap fica mais fácil).
 		- Uma faixa inicial com uma logo da empresa. (header)
 		- Um menu vertical ou horizontal, com submenus. (nav)
