@@ -33,7 +33,7 @@ const watches = [
     description: 'Starting with the RM 67-01, whose lightness, thinness and ergonomics made it a perfect candidate, we reworked its lines to highlight its hidden athletic qualities.',
     img: './img/product5.jfif',
     preco: 750000.00
-  }
+  },
 ];
 
 for (let i = 0; i < watches.length; i++) {
@@ -43,18 +43,16 @@ for (let i = 0; i < watches.length; i++) {
 
   store.innerHTML += `
   <div class="item">
-  <img width="100%" height="50%" src="${watch.img}" alt="" />
-  <span>
-    <h3>${watch.nome}</h3>
-  </span>
-  <span>
-    <p>${watch.description}</p>
-  </span>
-  <span class="price"> R$ ${watch.preco} </span>
-  <button id="${watch.id}" class="add-cart">
-    Adicionar ao Carrinho
-  </button>
-</div>
+    <img width="100%" height="50%" src="${watch.img}" alt="" />
+    <span>
+      <h3>${watch.nome}</h3>
+    </span>
+    <span>
+      <p>${watch.description}</p>
+    </span>
+    <span class="price"> R$ ${watch.preco} </span>
+    <button id="${watch.id}" class="add-cart">Adicionar ao Carrinho</button>
+  </div>
     `
 };
 
@@ -106,8 +104,8 @@ document.body.addEventListener('click', (event) => {
   console.log(whatchesCartPricesArray);
 
   const total = document.querySelector('.total');
-  
-  const soma = whatchesCartPricesArray.reduce((total, qtd)=> total + qtd);
+
+  const soma = whatchesCartPricesArray.reduce((total, qtd) => total + qtd);
 
   total.textContent = `Total: ${soma}`
 });

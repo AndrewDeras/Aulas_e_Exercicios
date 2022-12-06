@@ -1,19 +1,13 @@
 <div class="item">
-  <img
-    src="./img/richard-mille-rm-50-03-mclaren-f1-.jpg"
-    alt=""
-  />
+  <img width="100%" height="50%" src="${watch.img}" alt="" />
   <span>
-    <h3>Modelo</h3>
+    <h3>${watch.nome}</h3>
   </span>
   <span>
-    <p>
-      The most recent high profile moment for Richard Mille came on the
-      Philippe-Chatrier Court at the 2020 Roland Garros Tournament.
-    </p>
+    <p>${watch.description}</p>
   </span>
-  <span> R$ 999.99 </span>
-  <button>Adicionar ao Carrinho</button>
+  <span class="price"> R$ ${watch.preco} </span>
+  <button id="${watch.id}" class="add-cart">Adicionar ao Carrinho</button>
 </div>
 <!-- carrinho -->
 <div class="cartItem">
