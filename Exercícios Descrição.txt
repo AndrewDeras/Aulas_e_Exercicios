@@ -48,3 +48,23 @@ Exercício 10: DONE
 	- Fazer um butão que ao clicar esconda o texto da tela e se clicado denovo mostre o texto novamente.
 OBS: usar tags do html
 -----------------------------------------------------------------------------------------------------------------------
+Exercício 11:
+	- Fazer três inputs de usuário para receber 3 números
+	- Fazer um botão que ao clicar some esses 3 números e mostre na tela (no html) o resultado
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 12:
+	- Fazer um programa para calcular desconto
+	- O programa deve receber um valor e o seu desconto em porcentagem e exibir o valor com o desconto
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 13:
+	- Fazer um programa que exiba o a data de hoje em hora, dia, mes e ano ao clicar em um botao.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 14:
+	- Programa com dois inputs um para nome outro para idade.
+	- Um botao que salve esses dados e limpe o compo dos inputs para que sejam adicionadas mais pessoas.
+	- Exiba quantas pessoas são maior de idade (18 anos) e quantas são menores de todas as salvas.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 15:
+	- Programa para resolver Equação do primeiro grau
+	- receba os coeficientes da equação em dois inputs e mostre a raiz na tela
+-----------------------------------------------------------------------------------------------------------------------
