@@ -26,8 +26,16 @@ const people = [
   { firstName: 'Eric', lastName: 'Silva', score: 82 }
 ]
 
-const peopleCopy = people.map(person => person)
-console.log(peopleCopy);
+const peopleCopy = people.map(person => {
+  return {
+    firstName: person.firstName,
+    lastName: person.lastName,
+    score: person.score
+  }
+}).sort((a, b) => a.score - b.score)
+
+console.log(people, peopleCopy);
+
 
 /*
   03
@@ -39,7 +47,14 @@ console.log(peopleCopy);
       debugger antes de partir para o próximo.
 */
 
-const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
+const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema'];
+
+const threeLettersAnimals = animals.filter(animal => animal.length === 3);
+
+
+
+
+
 
 /*
   04
@@ -47,6 +62,8 @@ const animals = ['cão', 'gato', 'boi', 'leão', 'gnu', 'alce', 'ema']
   - Baseado no array "animals", gere um novo array com a quantidade de letras do 
     nome de cada animal. Ex.: [6, 8, 2].
 */
+
+const animalsWordLength = animals.map(animal => animal.length)
 
 
 
@@ -64,7 +81,11 @@ const friends = [
   { id: 3, name: 'Luana', nearMe: false },
   { id: 4, name: 'Nilson', nearMe: true },
   { id: 5, name: 'Solange', nearMe: false }
-]
+];
+
+const nearFreinds = friends
+  .filter(friend => friend.nearMe === true)
+  .map(friend => friend.name);
 
 
 
@@ -75,7 +96,11 @@ const friends = [
     do array abaixo.
 */
 
-const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81]
+const numbers = [46, 86, 212, 29, 51, 9, 25, 42, 81];
+
+const OddNumbersSum = numbers
+  .filter(num => num % 2 !== 0)
+  .reduce((acc, oddNumber) => acc + oddNumber, 0);
 
 /*
   07
@@ -96,4 +121,10 @@ const data = [{
 }, {
   country: 'Indonesia',
   population: 263991379
-}]
+}];
+
+
+
+const populationWithOutChina = data.filter(countryData => countryData.country !== 'China').reduce((acc, item) => acc += item.population, 0)
+console.log(populationWithOutChina);
+debugger
