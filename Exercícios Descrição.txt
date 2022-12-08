@@ -52,7 +52,7 @@ Exercício 11:
 	- Fazer três inputs de usuário para receber 3 números
 	- Fazer um botão que ao clicar some esses 3 números e mostre na tela (no html) o resultado
 -----------------------------------------------------------------------------------------------------------------------
-Exercício 12:
+Exercício 12: DONE
 	- Fazer um programa para calcular desconto
 	- O programa deve receber um valor e o seu desconto em porcentagem e exibir o valor com o desconto
 -----------------------------------------------------------------------------------------------------------------------
@@ -64,7 +64,7 @@ Exercício 14:
 	- Um botao que salve esses dados e limpe o compo dos inputs para que sejam adicionadas mais pessoas.
 	- Exiba quantas pessoas são maior de idade (18 anos) e quantas são menores de todas as salvas.
 -----------------------------------------------------------------------------------------------------------------------
-Exercício 15:
+Exercício 15: DONE
 	- Programa para resolver Equação do primeiro grau
 	- receba os coeficientes da equação em dois inputs e mostre a raiz na tela
 -----------------------------------------------------------------------------------------------------------------------
