@@ -1,26 +1,24 @@
 const nome = document.querySelector('#nome');
 const idade = document.querySelector('#idade');
 
-const save = document.querySelector('#save');
+const btn = document.querySelector('#save');
 
 const ulMaiores = document.querySelector('.maiores-de-idade');
 const ulMenores = document.querySelector('.menores-de-idade');
 
-let pessoas = [];
-let maiores = [];
-
-
-save.addEventListener('click', () => {
-    pessoas.push({ name: nome.value, age: idade.value });
-    maiores = pessoas.filter(pessoa => pessoa.idade >= 18)
-    console.log(maiores);
-    nome.value = '';
-    idade.value = '';
-});
-console.log(maiores);
-
-
-
+let pessoas = []
+btn.addEventListener('click', () => {
+    pessoas.push({ nome: nome.value, idade: idade.value })
+})
+ console.log(pessoas);
+for (let i = 0; i < pessoas.length; i++) {
+    const pessoa = pessoas[i];
+    ulMaiores+=`
+    <li class="list-group-item list-group-item-dark">
+        ${pessoa.nome}.
+    </li>
+    `
+}
 
 
 
