@@ -20,27 +20,38 @@
       </div>
 
       <div class="mb-2 col-auto d-flex flex-column align-items-center">
-        <input placeholder="Idade" class="form-control" id="idade" type="number" />
+        <input
+          placeholder="Idade"
+          class="form-control"
+          id="idade"
+          type="number"
+        />
       </div>
 
       <div class="col-auto">
         <button id="save" class="btn btn-primary mb-3">Salvar</button>
+      </div>
+      <div class="col-auto">
+        <button id="maiores" class="btn btn-primary mb-3">Mostrar maiores</button>
+      </div>
+      <div class="col-auto">
+        <button id="menores" class="btn btn-primary mb-3">Mostrar menores</button>
       </div>
     </div>
 
     <div class="resultado container row text-center">
       <div class="col">
         <ul class="list-group maiores-de-idade">
-          <li class="list-group-item list-group-item-dark">
-            Maiores de idade.
+          <li class="maioresCol list-group-item list-group-item-dark">
+            
           </li>
         </ul>
       </div>
 
-      <div class=" col">
-        <ul class="list-group menores-de-idade">
-          <li class="list-group-item list-group-item-dark">
-            Menores de idade.
+      <div class="col">
+        <ul class=" list-group menores-de-idade">
+          <li class="menoresCol list-group-item list-group-item-dark">
+
           </li>
         </ul>
       </div>
