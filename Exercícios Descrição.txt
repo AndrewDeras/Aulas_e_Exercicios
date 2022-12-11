@@ -59,7 +59,7 @@ Exercício 12: DONE
 Exercício 13: DONE
 	- Fazer um programa que exiba o a data de hoje em hora, dia, mes e ano ao clicar em um botao.
 -----------------------------------------------------------------------------------------------------------------------
-Exercício 14: 
+Exercício 14: DONE
 	- Programa com dois inputs um para nome outro para idade.
 	- Um botao que salve esses dados e limpe o compo dos inputs para que sejam adicionadas mais pessoas.
 	- Exiba quantas pessoas são maior de idade (18 anos) e quantas são menores de todas as salvas.
