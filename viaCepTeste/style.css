@@ -1,0 +1,6 @@
+div{
+    width: 200px;
+    text-align: center;
+    margin: 200px auto;
+    display: grid;
+}
