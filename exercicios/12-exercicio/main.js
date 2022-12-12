@@ -7,7 +7,7 @@ const button = document.querySelector('button');
 let valorComDesconto = 0;
 
 function calcularDesconto() {
-    return valorComDesconto = valor.value * (1 - desconto.value / 100);
+    return valorComDesconto = Math.round(valor.value * (1 - desconto.value / 100));
 };
 
 
