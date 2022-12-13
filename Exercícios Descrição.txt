@@ -68,3 +68,29 @@ Exercício 15: DONE
 	- Programa para resolver Equação do primeiro grau
 	- receba os coeficientes da equação em dois inputs e mostre a raiz na tela
 -----------------------------------------------------------------------------------------------------------------------
+Exercício 16:
+	- Modificar o código do exercício 3 para que possa adicionar ao carrinho quantidade de cada produto, sem ter o
+	produto duplicado no carrinho.
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 17:
+	- Criar uma página com um menu e um conteudo responsívo utilizando o bootstrap.
+	- Usar o sistema de grid do bootstrap
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 18:
+	- Criar uma classe animal com 3 atributos e 3 metodos
+	- Um metodo emitir som e outro andar
+	- Um metodo para imprimir os atributos da classe
+	- Criar 3 classes de espécie de animais que herdam a classe animal, exemplo classe cachorro e gato.
+	- As classes filhas de animal devem possuir 2 atributos e 4 metodos, 3 desses metodos devem ser sobrescritas de
+	metodos da classe mãe e 1 método particular da classe
+	- Usar get e set
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 19:
+	- Criar uma fábrica de animais usando as classes do exercício 18
+	- Fabricar 3 animais de cada espécie
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 20:
+	- Usando a Fabrica do exercício 19
+	- Fazer uma pagina com um butão chamado fabricar animal aleatório
+	- Ao clicar no botão fabricar 3 animais aleatórios e exibir esses animais na tela
+-----------------------------------------------------------------------------------------------------------------------
