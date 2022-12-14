@@ -61,3 +61,13 @@ class Produto {
         return this.img;
     }
 };
+
+class Carrinho {
+    constructor(){
+        this.produtos = [];
+        this.total = document.querySelector('.total');
+        this.total.innerText = 0;
+    };
+
+    
+}
