@@ -25,63 +25,63 @@ const produtos = [
     },
 ];
 
-class Produto{
-    constructor(id, nome, preco){
+class Produto {
+    constructor(id, nome, preco) {
         this.setId(id);
         this.setNome(nome);
         this.setPreco(preco);
         this.setImg();
     }
 
-    setId(id){
+    setId(id) {
         this.id = id;
     }
 
-    getId(){
+    getId() {
         return this.id;
     }
 
-    setNome(nome){
+    setNome(nome) {
         this.nome = nome;
     }
 
-    getNome(){
+    getNome() {
         return this.nome;
     }
 
-    setPreco(preco){
+    setPreco(preco) {
         this.preco = preco;
     }
 
-    getPreco(){
+    getPreco() {
         return this.preco;
     }
 
-    setImg(){
+    setImg() {
         this.img = "./img/" + this.getNome().toLowerCase() + ".jpg";
     }
 
-    getImg(){
+    getImg() {
         return this.img;
     }
 
 }
 
-class Carrinho{
-    constructor(){
+class Carrinho {
+    constructor() {
         this.produtos = [];
         this.total = document.getElementById("total");
         this.total.innerText = 0;
     }
 
-    adicionarProduto(produto){
+    adicionarProduto(produto) {
         this.produtos.push(produto);
         this.total.innerText = this.getTotal();
     }
 
-    removerProduto(idProduto){
-        for(let i = 0; i<this.produtos.length; i++){
-            if(this.produtos[i].getId() == idProduto){
+    removerProduto(idProduto) {
+        for (let i = 0; i < this.produtos.length; i++) {
+            if (this.produtos[i].getId() == idProduto) {
                 this.produtos.splice(i, 1);
                 break;
             }
@@ -89,34 +89,34 @@ class Carrinho{
         this.total.innerText = this.getTotal();
     }
 
-    getTotal(){
+    getTotal() {
         let total = 0;
-        for(let i = 0; i<this.produtos.length; i++){
+        for (let i = 0; i < this.produtos.length; i++) {
             total += this.produtos[i].getPreco();
         }
         return total;
     }
 
-    getProdutos(){
+    getProdutos() {
         return this.produtos;
     }
 
-    exibirProdutos(){
+    exibirProdutos() {
 
         let container = document.getElementById("listaCarrinho");
-        
+
         let html = ``;
         let count = 2;
-    
-        for(let i = 0; i<this.produtos.length; i++){
-    
-            if(i % 3 == 0){
+
+        for (let i = 0; i < this.produtos.length; i++) {
+
+            if (i % 3 == 0) {
                 html += `<div class="row">`;
-                if(i != 0){
+                if (i != 0) {
                     count += 3;
                 }
             }
-            
+
             html += `<div class="col">
                         <div class="row">
                             <img src="${this.produtos[i].getImg()}" style="width: auto; height: 200;">
@@ -133,46 +133,46 @@ class Carrinho{
                             </div>
                         </div>
                     </div>`;
-    
-            if(i == count){
+
+            if (i == count) {
                 html += `</div>`;
             }
-    
+
         }
-    
+
         container.innerHTML = html;
     }
 
 }
 
-class FabricaProduto{
-    constructor(produtos){
+class FabricaProduto {
+    constructor(produtos) {
         this.produtos = [];
-        for(let i = 0; i<produtos.length; i++){
+        for (let i = 0; i < produtos.length; i++) {
             this.produtos[i] = new Produto(i, produtos[i].nome, produtos[i].preco);
         }
     }
 
-    getProdutos(){
+    getProdutos() {
         return this.produtos;
     }
 
-    exibirProdutos(){
+    exibirProdutos() {
 
         let container = document.getElementById("listaProduto");
-    
+
         let html = ``;
         let count = 2;
-    
-        for(let i = 0; i<this.produtos.length; i++){
-    
-            if(i % 3 == 0){
+
+        for (let i = 0; i < this.produtos.length; i++) {
+
+            if (i % 3 == 0) {
                 html += `<div class="row">`;
-                if(i != 0){
+                if (i != 0) {
                     count += 3;
                 }
             }
-            
+
             html += `<div class="col">
                         <div class="row">
                             <img src="${this.produtos[i].getImg()}" style="width: auto; height: 200;">
@@ -189,13 +189,13 @@ class FabricaProduto{
                             </div>
                         </div>
                     </div>`;
-    
-            if(i == count){
+
+            if (i == count) {
                 html += `</div>`;
             }
-    
+
         }
-    
+
         container.innerHTML = html;
     }
 
@@ -207,13 +207,13 @@ let produtosMontados = fabrica.getProdutos();
 
 let carrinho = new Carrinho();
 
-function adicionarCarrinho(id){
+function adicionarCarrinho(id) {
     let produto = produtosMontados[id];
     carrinho.adicionarProduto(produto);
     carrinho.exibirProdutos();
 }
 
-function removerCarrinho(id){
+function removerCarrinho(id) {
     let produto = produtosMontados[id];
     carrinho.removerProduto(produto.getId());
     carrinho.exibirProdutos();
