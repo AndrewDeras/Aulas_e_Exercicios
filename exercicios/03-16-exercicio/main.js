@@ -23,11 +23,12 @@ const produtos = [
 
 class Produto {
 
-    constructor(id, nome, preco) {
+    constructor(id, nome, preco, qtd) {
         this.setId(id);
         this.setNome(nome);
         this.setPreco(preco);
         this.setImg();
+        this.setQtd(qtd);
     }
 
     setId(id) {
@@ -51,6 +52,14 @@ class Produto {
 
     getPreco() {
         return this.preco;
+    }
+
+    setQtd(qtd) {
+        this.qtd = qtd;
+    }
+
+    getQtd() {
+        return this.qtd
     }
 
     setImg() {
@@ -85,13 +94,15 @@ class Carrinho {
     getProdutos() {
         return this.produtos;
     }
+
+
 };
 
 class FabricaProduto {
     constructor(produtos) {
         this.produtos = [];
         for (let i = 0; i < produtos.length; i++) {
-            this.produtos[i] = new Produto(i, produtos[i].nome, produtos[i].preco);
+            this.produtos[i] = new Produto(i, produtos[i].nome, produtos[i].preco, 1);
         };
     }
 
@@ -113,7 +124,8 @@ class FabricaProduto {
                 </span>
 
                 <span class="row price"> R$ ${produto.getPreco()} </span>
-                <button id="${produto.getId()}" class="row add-cart btn btn-success">Adicionar ao Carrinho</button>
+                <button id="${produto.getId()}" class="row add-cart btn btn-success">Adicionar ao Carrinho
+                </button>
             </div>
             
             `
@@ -124,3 +136,5 @@ class FabricaProduto {
 
 let fabrica = new FabricaProduto(produtos);
 fabrica.exibirProdutos();
+
+
