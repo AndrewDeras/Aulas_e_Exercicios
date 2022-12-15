@@ -63,11 +63,64 @@ class Produto {
 };
 
 class Carrinho {
-    constructor(){
+    constructor() {
         this.produtos = [];
         this.total = document.querySelector('.total');
         this.total.innerText = 0;
     };
 
-    
+    adicionarProduto(produto) {
+        this.produtos.push(produto);
+        this.total.innerText = this.getTotal();
+    }
+
+    getTotal() {
+        let total = 0;
+        for (let i = 0; i < this.produtos.length; i++) {
+            total += this.produtos.getPreco();
+        }
+        return total;
+    }
+
+    getProdutos() {
+        return this.produtos;
+    }
+};
+
+class FabricaProduto {
+    constructor(produtos) {
+        this.produtos = [];
+        for (let i = 0; i < produtos.length; i++) {
+            this.produtos[i] = new Produto(i, produtos[i].nome, produtos[i].preco);
+        };
+    }
+
+    getProdutos() {
+        return this.produtos;
+    }
+
+    exibirProdutos() {
+        let store = document.querySelector('.store');
+        for (let i = 0; i < this.produtos.length; i++) {
+            const produto = this.produtos[i];
+            store.innerHTML += `
+            <div class="col">
+                <div class="row">
+                    <img style="width: 250; height: 200;" src="${produto.getImg()}" alt="" />
+                </div>    
+                <span class="row">
+                    <h3>${produto.getNome()}</h3>
+                </span>
+
+                <span class="row price"> R$ ${produto.getPreco()} </span>
+                <button id="${produto.getId()}" class="row add-cart btn btn-success">Adicionar ao Carrinho</button>
+            </div>
+            
+            `
+        }
+
+    }
 }
+
+let fabrica = new FabricaProduto(produtos);
+fabrica.exibirProdutos();
