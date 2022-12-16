@@ -1,5 +1,5 @@
 // function alistamento(nome, sexo, idade) {
-//     if (sexo === 'homem' && idade >= 18) {
+//     if (sexo === 'masculino' && idade >= 18) {
 //         return `${nome} está apto para o alistamento.`;
 //     }
 //     else {
@@ -12,7 +12,7 @@ const alistamento = (nome, sexo, idade) =>
         ? `${nome} está apto para o alistamento.`
         : `${nome} não está apto para se alistamento`;
 
-console.log(alistamento('Andrew', 'homem', 24));
+console.log(alistamento('Andrew', 'masculino', 24));
 
 const numbers = [1, 2, 3, 4, 5, 6, 7];
 
