@@ -4,7 +4,20 @@
   - Crie uma função que recebe uma data por parâmetro e retorna a data na 
     formatação "DD/MM/AAAA". Exemplo: 03/07/2021;
   - Não utilize a date-fns.
+
 */
+let dateOne = new Date();
+const formatTimeUnit = unit => String(unit).length === 1 ? `0${unit}` : unit;
+
+let formatDate = date => {
+    const day = formatTimeUnit(date.getDate());
+    const month = formatTimeUnit(date.getMonth() + 1);
+    const year = date.getFullYear();
+    return `${formatTimeUnit(day)}/${formatTimeUnit(month)}/${year}`
+}
+
+
+console.log(formatDate(dateOne));
 
 /*
   02
@@ -13,7 +26,44 @@
     data na formatação: "03:07 - domingo, 7 de junho de 2020";
   - Não utilize a date-fns.
 */
+const date = new Date();
 
+const weekDays = [
+    'domingo',
+    'segunda-feira',
+    'terça-feira',
+    'quarta-feira',
+    'quinta-feira',
+    'sexta-feira',
+    'sábado'
+];
+const months = [
+    'janeiro',
+    'fevereiro',
+    'março',
+    'abril',
+    'maio',
+    'junho',
+    'julho',
+    'agosto',
+    'setembro',
+    'outubro',
+    'novembro',
+    'dezembro'
+];
+
+const formartDateInfo = date => {
+    const hours = formatTimeUnit(date.getHours());
+    const minutes = formatTimeUnit(date.getMinutes());
+    const weekDay = weekDays[date.getDay()];
+    const day = date.getDate();
+    const month = months[date.getMonth()];
+    const year = date.getFullYear();
+
+    return `${hours}:${minutes} - ${weekDay}, ${day} de ${month} de ${year}`
+}
+
+console.log(formartDateInfo(date));
 /*
   03
 
@@ -22,7 +72,11 @@
   - Não modifique a declaração da const user.
 */
 
-const user = { id: 42, isVerified: true }
+const user = { id: 42, isVerified: true };
+
+const { id, isVerified } = user;
+
+console.log(id, isVerified);
 
 /*
   04
@@ -34,8 +88,13 @@ const user = { id: 42, isVerified: true }
   - Não modifique a declaração das consts "robotA" e "robotB".
 */
 
-const robotA = { name: 'Bender' }
-const robotB = { name: 'HAL 9000' }
+const robotA = { name: 'Bender' };
+const robotB = { name: 'HAL 9000' };
+
+const { name: nameA } = robotA;
+const { name: nameB } = robotB;
+
+console.log(nameA, nameB);
 
 /*
   05
@@ -50,6 +109,9 @@ const a = 'a'
 const b = 'b'
 const c = 'c'
 
+const alphabet = { a, b, c };
+console.log(alphabet);
+
 /*
   06
 
@@ -57,23 +119,16 @@ const c = 'c'
 */
 
 const useDataSomewhereElse = value => {
-  console.log(value)
+    console.log(value)
 }
 
-const updateSomething = (data = {}) => {
-  const target = data.target
-  const property = data.property
-  let willChange = data.willChange
+const updateSomething = ({ target, property, willChange } = {}) => {
 
-  if (willChange === 'valor indesejado') {
-    willChange = 'valor desejado'
-  }
+    if (willChange === 'valor indesejado') {
+        willChange = 'valor desejado'
+    }
 
-  useDataSomewhereElse({
-    target: target,
-    property: property,
-    willChange: willChange
-  })
+    useDataSomewhereElse({ target, property, willChange })
 }
 
 updateSomething({ target: '1', property: '2', willChange: 'valor indesejado' })
@@ -85,21 +140,21 @@ updateSomething({ target: '1', property: '2', willChange: 'valor indesejado' })
     passada. Refatore-o.
 */
 
-const clockContainer = document.querySelector('.clock-container')
+const clockContainer = document.querySelector('.clock-container');
+
+const getClockHTML = (hours, minutes, seconds) => `
+    <span>${hours}</span> :
+    <span>${minutes}</span> :
+    <span>${seconds}</span>
+`;
 
 const updateClock = () => {
-  const present = new Date()
-  const hours = present.getHours()
-  const minutes = present.getMinutes()
-  const seconds = present.getSeconds()
+    const present = new Date();
+    const hours = formatTimeUnit(present.getHours());
+    const minutes = formatTimeUnit(present.getMinutes());
+    const seconds = formatTimeUnit(present.getSeconds());
 
-  const clockHTML = `
-    <span>${String(hours).length === 1 ? `0${hours}` : hours}</span> :
-    <span>${String(minutes).length === 1 ? `0${minutes}` : minutes}</span> :
-    <span>${String(seconds).length === 1 ? `0${seconds}` : seconds}</span>
-  `
-
-  clockContainer.innerHTML = clockHTML
+    clockContainer.innerHTML = getClockHTML(hours, minutes, seconds);
 }
 
-setInterval(updateClock, 1000)
+setInterval(updateClock, 1000);

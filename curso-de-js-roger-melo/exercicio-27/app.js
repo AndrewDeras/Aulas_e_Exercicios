@@ -2,68 +2,79 @@
   01
 
   - Implemente um código assíncrono entre os console.log() abaixo.
-*/
+
 
 console.log('Linha 1')
 console.log('Linha 2')
 console.log('Linha 3')
 console.log('Linha 4')
 
-
+setTimeout(() => {
+  console.log('Aynsc func');
+}, 2500)
 
 console.log('Linha 5')
 console.log('Linha 6')
 console.log('Linha 7')
 console.log('Linha 8')
-
+*/
 /*
   02
 
   - Descomente o código abaixo e crie a função que fará a string dentro da 
     "logGreeting" ser exibida no console.
-*/
 
-function logGreeting (name) {
+
+function logGreeting(name) {
   console.log(`olá, ${name}`)
 }
 
-// x(logGreeting)
+const x = callback => {
+  callback('Andrew');
+}
 
+x(logGreeting);
+*/
 /*
   03
 
   - O código abaixo possui uma parte que pode ser isolada. Isole-a.
-*/
 
-const numbers = [3, 4, 10, 20]
-const lesserThanFive = numbers.filter(num => num < 5)
+
+const numbers = [3, 4, 10, 20];
+const getLessThanFive = num => num < 5;
+const lesserThanFive = numbers.filter(getLessThanFive)
 
 console.log(lesserThanFive)
-
+*/
 /*
   04
 
   - Refatore o código abaixo.
-*/
 
-const prices = [12, 19, 7, 209]
-let totalPrice = 0
 
-for (let i = 0; i < prices.length; i++) {
-  totalPrice += prices[i]
-}
+const prices = [12, 19, 7, 209];
+
+const getTotalPrice = (total, price) => total + price;
+
+const totalPrice = prices.reduce(getTotalPrice, 0);
 
 console.log(`Preço total: ${totalPrice}`)
-
+*/
 /*
   05
 
   - Abaixo da declaração do objeto "car", modifique a cor do carro para 'azul';
   - Não insira `car.color = azul`.
   - Não insira `car['color'] = azul`.
+
+
+let car = { color: 'amarelo' };
+let secondCar = car;
+secondCar.color = 'azul';
+console.log(car.color, secondCar.color);
 */
 
-let car = { color: 'amarelo' }
 
 /*
   06
@@ -73,8 +84,17 @@ let car = { color: 'amarelo' }
     deve ser invocada com 3 argumentos' deve ser retornada;
   - Se todos os argumentos forem passados, retorne a string 'A função foi 
     invocada com 3 argumentos'.
-*/
 
+
+const myFunc = (par1, par2, par3) => {
+  const isSomeParameterUndefined = [par1, par2, par3].includes(undefined);
+  return isSomeParameterUndefined
+    ? `A função deve ser invocada com 3 argumentos`
+    : `A função foi invocada com 3 argumentos'`;
+};
+
+console.log(myFunc(1, 2, 2));
+*/
 /*
   07
 
@@ -99,5 +119,32 @@ let car = { color: 'amarelo' }
 
 let booksBox = {
   spaces: 5,
-  booksIn: 0
+  booksIn: 0,
+
 }
+
+booksBox.addBooks = booksQuantity => {
+  if (booksBox.booksIn === booksBox.spaces) {
+    return 'A caixa já está cheia.'
+  };
+
+  if (booksBox.booksIn + booksQuantity > booksBox.spaces) {
+    const avaibleSpaces = booksBox.spaces - booksBox.booksIn;
+    const fitPlauraOrSingular = avaibleSpaces
+      ? 'cabe'
+      : 'cabem';
+    const pluralOrSingular = avaibleSpaces
+      ? 'livro'
+      : 'livros';
+    return `Só ${fitPlauraOrSingular} mais ${avaibleSpaces} ${pluralOrSingular}`
+  };
+
+  booksBox.booksIn += booksQuantity;
+  return `Já há ${booksBox.booksIn} livros na caixa`;
+}
+
+console.log(booksBox.addBooks(4));
+console.log(booksBox.addBooks(4));
+// console.log(booksBox.addBooks());
+
+console.log(booksBox);
