@@ -11,8 +11,44 @@
     - Os pokémons buscados devem ser: 'bulbasaur', 'charmander' e 'squirtle';
     - Os requests devem ser sequenciais. Ou seja, um request só deve ser 
       executado quando o request anterior for finalizado.
-*/
+,5
+const getPokemon = (url, callback) => {
+  const request = new XMLHttpRequest();
 
+  request.addEventListener('readystatechange', () => {
+    const isRequestOk = request.readyState === 4 && request.status === 200;
+    const isRequestNotOk = request.readyState === 4;
+
+    if (isRequestOk) {
+      const pokemon = JSON.parse(request.responseText);
+      callback(null, pokemon);
+      return
+    };
+    if (isRequestNotOk) {
+      console.log('Não foi possível obter o Pokémon');
+      return
+    };
+  });
+
+  request.open('GET', url);
+  request.send();
+};
+
+const logPokemonData = (error, data) => error
+  ? console.log(error)
+  : console.log(`Pokémon obtido: ${data.name}`);
+
+
+getPokemon('https://pokeapi.co/api/v2/pokemon/1', (error, data) => {
+  logPokemonData(error, data);
+  getPokemon('https://pokeapi.co/api/v2/pokemon/4', (error, data) => {
+    logPokemonData(error, data);
+    getPokemon('https://pokeapi.co/api/v2/pokemon/7', (error, data) => {
+      logPokemonData(error, data);
+    })
+  })
+})
+*/
 /*
   02
 
@@ -30,6 +66,15 @@
       - "Correção dos exercícios da aula 01 da etapa 08" - Aula 02-01 da etapa 
         08;
     2) Pesquisar no MDN.
+
+
+const map = (array, func) => {
+  let newArray = [];
+  array.forEach(item => newArray.push(func(item)));
+  return newArray
+};
+console.log(map([1, 2, 3], number => number * 2));
+console.log(map([1, 2, 3], number => number * 3));
 */
 
 /*
@@ -37,14 +82,14 @@
 
   - Descomente o console.log abaixo e faça o this do método referenciar o 
     objeto person.
-*/
-
+ */
 const person = {
   name: 'Roger',
-  getName: () => this.name
+  getName() { return this.name }
 }
 
-// console.log(person.getName())
+console.log(person.getName())
+
 
 /*
   04
@@ -53,28 +98,28 @@ const person = {
   - Um erro será exibido no console;
   - Faça as duas const x coexistirem, sem modificar o nome de qualquer uma 
     delas.
-*/
+
 
 const x = 'x'
-// const x = 'y'
+
+const getX = () => {
+  const x = 'y'
+  return x
+}
+*/
 
 /*
   05
 
   - O código abaixo está funcionando. Refatore-o da forma mais concisa que você 
     conseguir.
-*/
 
-const getFullName = (user) => {
-  const firstName = user.firstName
-  const lastName = user.lastName
 
-  return `${firstName} ${lastName}`
-}
+const getFullName = ({ firstName, lastName }) => `${firstName} ${lastName}`
 
 console.log(getFullName({ firstName: 'Afonso', lastName: 'Solano' }))
-
-/*
+*/
+/* 
   06
 
   - Crie uma função chamada 'convertToHex', que recebe o nome de uma cor por 
@@ -87,6 +132,23 @@ console.log(getFullName({ firstName: 'Afonso', lastName: 'Solano' }))
     a mensagem 'Não temos o equivalente hexadecimal para COR';
   - Exiba o hexadecimal de 8 cores diferentes usando a função criada acima.
 */
+const convertToHex = color => {
+  const colors = {
+    red: '#A31419',
+    green: '#10A337',
+    blue: '#4C91F0',
+    yellow: '#F0EA6F',
+    purple: '#A8132A3'
+  }
+  return colors[color]
+    ? `O hexadecimal para a cor ${color} é ${colors[color]}`
+    : `Não temos o equivalente hexadecimal para ${color}`
+}
+
+const colors = ['blue', 'black', 'red', 'green', 'pink', 'yellow', 'purple', ' brown'];
+
+colors.forEach(color => console.log(convertToHex(color)));
+
 
 
 /*
@@ -105,10 +167,18 @@ console.log(getFullName({ firstName: 'Afonso', lastName: 'Solano' }))
 */
 
 const people = [
-  { id: 5 , name: 'Angelica', age: 18, federativeUnit: 'Pernambuco' },
+  { id: 5, name: 'Angelica', age: 18, federativeUnit: 'Pernambuco' },
   { id: 81, name: 'Thales', age: 19, federativeUnit: 'São Paulo' },
   { id: 47, name: 'Ana Carolina', age: 18, federativeUnit: 'Alagoas' },
   { id: 87, name: 'Felipe', age: 18, federativeUnit: 'Minas Gerais' },
-  { id: 9 , name: 'Gabriel', age: 20, federativeUnit: 'São Paulo' },
+  { id: 9, name: 'Gabriel', age: 20, federativeUnit: 'São Paulo' },
   { id: 73, name: 'Aline', age: 19, federativeUnit: 'Brasília' }
-]
+];
+
+
+const agesFrequency = people.reduce((acc, person) => {
+  acc[person.age] = acc[person.age] + 1 || + 1;
+  return acc
+}, {});
+
+console.log(agesFrequency);
