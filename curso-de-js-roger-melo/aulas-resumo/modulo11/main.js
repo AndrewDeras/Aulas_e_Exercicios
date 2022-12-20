@@ -3,7 +3,7 @@
 console.log(1);
 console.log(2);
 setTimeout(() => {
-    console.log('function async');
+		console.log('function async');
 }, 2000)
 console.log(3);
 console.log(4);
@@ -11,36 +11,41 @@ console.log(4);
 
 //Request HTTP - API ou Banco de dados
 
-const getTodos = (url, callback) => {
-    const request = new XMLHttpRequest();
+const getPokemon = url => new Promise((resolve, reject) => {
+	const request = new XMLHttpRequest()
 
-    request.addEventListener('readystatechange', () => {
-        const isRequestOk = request.readyState === 4 && request.status === 200;
-        const isRequestNotOk = request.readyState === 4;
+	request.addEventListener('readystatechange', () => {
+		const isRequestOk = request.readyState === 4 && request.status === 200
+		const isRequestNotOk = request.readyState === 4
 
-        if (isRequestOk) {
-            const data = JSON.parse(request.responseText)
-            callback(null, data);
-            return
-        };
-        if (isRequestNotOk) {
-            callback('Não foi possível obter os dados', null)
-        };
-    });
+		if (isRequestOk) {
+			const data = JSON.parse(request.responseText)
+			resolve(data);
+		}
 
-    request.open('GET', url);
-    request.send();
-};
+		if (isRequestNotOk) {
+			reject('Não foi possível obter os dados')
+		}
+	});
 
-getTodos('./todos.json', (error, data) => {
-    console.log(data);
-    getTodos('./todos-2.json', (error, data) => {
-        console.log(data);
-        getTodos('./todos-3.json', (error, data) => {
-            console.log(data);
-        });
-    });
+	request.open('GET', url);
+	request.send();
+
 });
+
+// sintaxe de uma Promise
+getPokemon('https://pokeapi.co/api/v2/pokemon/1')
+	.then(bulbasaur => {
+		console.log(bulbasaur)
+		return getPokemon('https://pokeapi.co/api/v2/pokemon/4')
+	})
+	.then(charmander => {
+		console.log(charmander)
+		return getPokemon('https://pokeapi.co/api/v2/pokemon/7')
+	})
+	.then(console.log)
+	.catch(error => console.log(error))
+
 
 
 
