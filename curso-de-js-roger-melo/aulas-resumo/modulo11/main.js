@@ -7,7 +7,6 @@ setTimeout(() => {
 }, 2000)
 console.log(3);
 console.log(4);
-*/
 
 //Request HTTP - API ou Banco de dados
 
@@ -22,30 +21,55 @@ const getPokemon = url => new Promise((resolve, reject) => {
 			const data = JSON.parse(request.responseText)
 			resolve(data);
 		}
-
+		
 		if (isRequestNotOk) {
 			reject('Não foi possível obter os dados')
 		}
 	});
-
+	
 	request.open('GET', url);
 	request.send();
-
+	
 });
 
 // sintaxe de uma Promise
 getPokemon('https://pokeapi.co/api/v2/pokemon/1')
-	.then(bulbasaur => {
-		console.log(bulbasaur)
-		return getPokemon('https://pokeapi.co/api/v2/pokemon/4')
+.then(bulbasaur => {
+	console.log(bulbasaur)
+	return getPokemon('https://pokeapi.co/api/v2/pokemon/4')
+})
+.then(charmander => {
+	console.log(charmander)
+	return getPokemon('https://pokeapi.co/api/v2/pokemon/7')
+})
+.then(console.log)
+.catch(error => console.log(error))
+
+
+// FETCH
+fetch('https://jsonplaceholder.typicode.com/users')
+	.then(response => {
+		return response.json()
 	})
-	.then(charmander => {
-		console.log(charmander)
-		return getPokemon('https://pokeapi.co/api/v2/pokemon/7')
-	})
-	.then(console.log)
+	.then(users => console.log(users))
 	.catch(error => console.log(error))
+*/
 
+// async - await
 
+const getUsers = async () => {
+	const response = await fetch('https://jsonplaceholder.typicode.com/users');
+	return await response.json();
+}
+
+const logUsers = async () => {
+	const users = await getUsers();
+	console.log(users);
+}
+console.log(1);
+console.log(2);
+logUsers()
+console.log(3);
+console.log(4);
 
 

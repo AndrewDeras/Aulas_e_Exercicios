@@ -8,6 +8,18 @@
     do GitHub.
 */
 
+const getGitHubInfo = async () => {
+  const response = await fetch('https://api.github.com/users/AndrewDeras');
+  return await response.json();
+};
+
+const logGitHubInfo = async () => {
+  const info = await getGitHubInfo();
+  console.log(info);
+};
+
+logGitHubInfo();
+
 /*
   02
 
@@ -16,7 +28,15 @@
   - Exiba esse novo array no console.
 */
 
-const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const divBy2And3 = numbers.filter(num => {
+  if (num % 2 === 0 || num % 3 === 0){
+    return num
+  }
+});
+
+console.log(divBy2And3);
 
 /*
   03

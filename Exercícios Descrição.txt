@@ -94,3 +94,30 @@ Exercício 20:
 	- Fazer uma pagina com um butão chamado fabricar animal aleatório
 	- Ao clicar no botão fabricar 3 animais aleatórios e exibir esses animais na tela
 -----------------------------------------------------------------------------------------------------------------------
+Exercício 21:
+	Instalar o reactstrap: link documentação --> https://reactstrap.github.io/?path=/story/home-installation--page
+	- Na Pasta do projetos/teste_projeto/cliente rodar:
+	   - npm install bootstrap
+	   - npm install reactstrap react react-dom
+	- Importar o bootstrap no index.js
+	   - import 'bootstrap/dist/css/bootstrap.min.css';
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 22:
+	- Usando o reactstrap
+	- Criar um componente React que monte um grid de linhas e colunas n x m, sendo n e m parametros do componente
+	- O componente deve renderizar o grid
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 23:
+	- Usando o reactstrap
+	- Criar um componente react para menu, parametros passados: lista de nome dos links e lista de links
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 24:
+	- Usando o reactstrap
+	- Criar um componente react para o header (cabeçalho) da página
+	- Criar um componente react para o footer (rodapé) da página
+-----------------------------------------------------------------------------------------------------------------------
+Exercício 25:
+	- Usando o reactstrap
+	- Criar um componente react formulário (Form), que recebe uma lista com os nomes e 
+	uma lista com os tipos dos campos do formulário
+-----------------------------------------------------------------------------------------------------------------------
