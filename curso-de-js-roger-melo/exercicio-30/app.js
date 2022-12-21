@@ -79,22 +79,16 @@ const division = calculator('/');
     pegando do array `brasil`. Não remova esses itens de `brasil`.
 */
 
-const sul = ['Paraná','Santa Catarina', 'Rio Grande do Sul'];
+const sul = ['Paraná', 'Santa Catarina', 'Rio Grande do Sul'];
 
-const sudeste = ['Espírito Santo', 'Minas Gerais','Rio de Janeiro', 'São Paulo'];
+const sudeste = ['Espírito Santo', 'Minas Gerais', 'Rio de Janeiro', 'São Paulo'];
 
-const brasil = sul.concat(sudeste);
-brasil.unshift('Amapá','Amazonas','Pará');
+let brasil = sul.concat(sudeste);
+brasil.unshift('Amapá', 'Amazonas', 'Pará');
 
 const firstState = brasil.shift();
 
-const newSul = brasil.slice(2,5)
-
-console.log(firstState);
-console.log(newSul);
-console.log(brasil);
-
-
+const newSul = brasil.slice(2, 5)
 
 /*
   04
@@ -114,6 +108,31 @@ console.log(brasil);
     console: "Nem todos os estados tem mais de 7 letras.". Pesquise pelo método 
     every.
 */
+const nordeste = [
+  'Maranhão',
+  'Piauí',
+  'Ceará',
+  'Rio Grande do Norte',
+  'Paraíba',
+  'Pernambuco',
+  'Alagoas',
+  'Sergipe'
+];
+
+const newSudeste = brasil.splice(5, 9);
+
+brasil = brasil.concat(nordeste)
+
+const newBrasil = brasil.map((estado, index) => {
+  return { id: index, estado: estado }
+})
+
+const moreThanSevenLetters = brasil.every(item => item.length > 7)
+
+const message = moreThanSevenLetters
+  ? 'Nem todos os estados tem mais de 7 letras.'
+  : 'Nem todos os estados tem mais de 7 letras.'
+
 
 /*
   05
@@ -128,3 +147,21 @@ console.log(brasil);
   - Filtre o array criado acima, retornando somente os estados que tiverem ID 
     par. Atribua este novo array à uma constante.
 */
+
+const isCearaIncluded = brasil.includes('Ceara');
+
+const cearaMessage = isCearaIncluded
+  ? 'Ceará está incluído.'
+  : 'Ceará não foi incluído =/';
+
+const newNewBrasil = newBrasil.map(({ id, estado }) => ({
+  id: id + 1,
+  estado: `${estado} pertence ao Brasil.`
+}));
+
+console.log(newBrasil);
+console.log(newNewBrasil);
+
+const filteredNewNewBrasil = newNewBrasil.filter(({ id }) => id % 2 === 0)
+
+console.log(filteredNewNewBrasil);
