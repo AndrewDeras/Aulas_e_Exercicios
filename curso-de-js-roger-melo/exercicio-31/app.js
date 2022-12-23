@@ -8,17 +8,17 @@
     do GitHub.
 */
 
-const getGitHubInfo = async () => {
-  const response = await fetch('https://api.github.com/users/AndrewDeras');
+const getGitHubInfo = async username => {
+  const response = await fetch(`https://api.github.com/users/${username}`);
   return await response.json();
 };
 
-const logGitHubInfo = async () => {
-  const info = await getGitHubInfo();
+const logGitHubInfo = async username => {
+  const info = await getGitHubInfo(username);
   console.log(info);
 };
 
-logGitHubInfo();
+logGitHubInfo('AndrewDeras');
 
 /*
   02
@@ -30,13 +30,10 @@ logGitHubInfo();
 
 const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
-const divBy2And3 = numbers.filter(num => {
-  if (num % 2 === 0 || num % 3 === 0){
-    return num
-  }
-});
+const getDivBy2Or3 = numbers => numbers
+  .filter(num => num % 2 === 0 || num % 3 === 0)
 
-console.log(divBy2And3);
+console.log(getDivBy2Or3(numbers));
 
 /*
   03
@@ -52,6 +49,11 @@ console.log(divBy2And3);
     - Rafaela => "PRaPfaPePla".
 */
 
+const myName = ['Na', 'tá','lia'];
+
+const nameInPLanguage = myName.reduce((acc, item) => acc += `P${item}`, '')
+
+console.log(nameInPLanguage);
 /*
   04
 
@@ -66,6 +68,15 @@ console.log(divBy2And3);
 
   Dica: pesquise pelo método split.
 */
+const firstName = 'Andrew';
+
+firstName
+  .split('')
+  .forEach((letter, index) => {
+    console.log(` - "${letter}" é a ${index + 1}ª letra do meu nome`);
+  });
+
+
 
 /*
   05
@@ -80,6 +91,17 @@ console.log(divBy2And3);
   Dica: pesquise pelo método Object.keys().
 */
 
+const myInfo = {
+  name: 'Andrew',
+  lastname: 'Deras',
+  age: 24
+}
+
+const myInfoArr = Object.keys(myInfo);
+console.log(myInfoArr);
+
+
+
 /*
   06
 
@@ -93,7 +115,17 @@ console.log(divBy2And3);
   - Utilize o array abaixo para testar a função.
 */
 
-const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60]
+const scores = [100, 90, 85, 100, 60, 85, 100, 90, 55, 75, 60];
+
+const occurrences = (arr, num) => {
+  let howMany = 0;
+  arr.forEach(number => {
+    if (number === num) howMany++
+  })
+  return howMany
+}
+
+console.log(occurrences(scores, 85));
 
 /*
   07
