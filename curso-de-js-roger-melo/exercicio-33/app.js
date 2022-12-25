@@ -5,8 +5,7 @@
   - Solucione esse problema sem declarar uma constante "book".
 */
 
-// console.log(book)
-
+console.log(book)
 /*
   02
 
@@ -16,6 +15,9 @@
     - O 2º item é o 1º item do array recebido por argumento;
   - Implemente a função da forma mais concisa que você conseguir.
 */
+const invertPositions = ([first, , third]) => [third, first]
+
+console.log(invertPositions([3, 2, 1]));
 
 /*
   03
@@ -25,10 +27,14 @@
 */
 
 const topics = [
-  { id: 1, name: 'Artes & cultura'},
-  { id: 2, name: 'Negócios & finanças'},
-  { id: 3, name: 'Carreiras'}
+  { id: 1, name: 'Artes & cultura' },
+  { id: 2, name: 'Negócios & finanças' },
+  { id: 3, name: 'Carreiras' }
 ]
+
+const [, , { name: topicName }] = topics
+
+console.log(topicName);
 
 /*
   04
@@ -38,8 +44,10 @@ const topics = [
     'red', 'green' e 'blue'.
 */
 
-const colors = ['#FF00FF', ['#FF0D0D', '#0AFA00', '#011EFA'], '#7BF0FF']
+const colors = ['#FF00FF', ['#FF0D0D', '#0AFA00', '#011EFA'], '#7BF0FF'];
 
+const [, [red, green, blue]] = colors
+console.log(red, green, blue);
 /*
   05
 
@@ -47,15 +55,18 @@ const colors = ['#FF00FF', ['#FF0D0D', '#0AFA00', '#011EFA'], '#7BF0FF']
   - Observe que ela recebe 2 argumentos, um objeto e uma string;
   - Dentro da declaração da função:
     - Faça um destructuring no objeto recebido no 1º argumento;
-    - No destructuring, nomeie de forma dinâmica a const que você está 
+    - No destructuring, nomeie de forma dinâmica a const que você está
       declarando, usando o 2º argumento que a invocação da função recebeu.
       Você já conhece a sintaxe que nomeia de forma dinâmica;
     - Atribua "desconhecido" como valor default da const do destructuring;
     - Faça a função retornar "Olá, meu nome é [NOME]!".
 */
-
-// console.log(greet({ name: 'Roger' }, 'name'))
-// console.log(greet({}, 'personName'))
+const greet = (obj, dynamicName) => {
+  const { [dynamicName]: name = 'desconhecido' } = obj;
+  return `Olá, meu nome é ${name}!`
+}
+console.log(greet({ name: 'Roger' }, 'name'))
+console.log(greet({}, 'personName'))
 
 /*
   06

@@ -23,10 +23,9 @@
 
 const form = document.querySelector('form');
 const out = document.querySelector('div');
-const apiKey = 'gTzmQ01MVdTy9iXnmKg7LHJprVEg22Pq';
-
 
 const getGif = async () => {
+  const apiKey = 'gTzmQ01MVdTy9iXnmKg7LHJprVEg22Pq';
   const inputValue = form['search'].value;
   const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=1&q=${inputValue}`;
 
