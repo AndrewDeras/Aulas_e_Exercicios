@@ -8,6 +8,19 @@ const cityCard = document.querySelector('[data-js="city-card"]')
 let timeImg = document.querySelector('[data-js="time"]');
 let weatherIconContainer = document.querySelector('[data-js="time-icon"]')
 
+const removeClassItem = (item, className) => {
+    if (item.classList.contains(className)) {
+        item.classList.remove(className)
+    }
+}
+
+const addInfo = (item, info) => {
+    item.textContent = info
+}
+
+const addIcon = (item, icon) => {
+    item.innerHTML = icon
+}
 
 cityForm.addEventListener('submit', async event => {
     event.preventDefault();
@@ -17,19 +30,16 @@ cityForm.addEventListener('submit', async event => {
 
     const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg"/>`
 
-    if (cityCard.classList.contains('d-none')) {
-        cityCard.classList.remove('d-none')
-    }
-    if (IsDayTime) {
-        timeImg.src = './/src/day.svg';
-    } else {
-        timeImg.src = './/src/night.svg';
-    }
+    removeClassItem(cityCard, 'd-none')
 
-    cityNameContainer.textContent = LocalizedName
-    cityWeatherContainer.textContent = WeatherText
-    cityTemperatureContainer.textContent = Temperature.Metric.Value
+    IsDayTime
+        ? timeImg.src = './/src/day.svg'
+        : timeImg.src = './/src/night.svg';
 
-    weatherIconContainer.innerHTML = timeIcon
+    addInfo(cityNameContainer, LocalizedName);
+    addInfo(cityWeatherContainer, WeatherText);
+    addInfo(cityTemperatureContainer, Temperature.Metric.Value);
+    addIcon(weatherIconContainer, timeIcon);
+
     cityForm.reset();
 })
