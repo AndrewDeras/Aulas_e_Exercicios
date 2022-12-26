@@ -22,12 +22,19 @@ const invertStrOne = str => {
   return newNome
 }
 
-const invertStrTwo = str => {
-  let strArr = str.split('').reverse();
-  return strArr.join('')
-}
+const invertStrTwo = str => str
+  .split('')
+  .reverse()
+  .join('')
 
+const invertStrThree = str => str
+  .split('')
+  .reduce((acc, letter) => letter + acc, '')
+
+
+console.log(invertStrOne(str));
 console.log(invertStrTwo(str));
+console.log(invertStrThree(str));
 /*
   02
   
@@ -35,9 +42,9 @@ console.log(invertStrTwo(str));
 */
 
 const numbers = [5, 20, 7, 32, 47, 15, 83, 91, 27, 33]
-let foundNumber = false;
+let foundNumber = numbers.includes(15);
 
-foundNumber = numbers.includes(15)
+
 
 console.log(foundNumber)
 

@@ -1,0 +1,9 @@
+body{
+    background: black;
+    color: white;
+}
+
+.container{
+    max-width: 500px;
+    background-color: gray;
+}
