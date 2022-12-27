@@ -3,8 +3,20 @@
 
   - Implemente uma função que recebe o nome da key de um item da localStorage 
     e retorna o valor da key parseado para objeto javascript.
-*/
 
+const myName = {
+  firstName: 'Andrew',
+  lastName: 'Barbosa Deras'
+}
+
+localStorage.setItem('fullName', JSON.stringify(myName))
+
+const getKeyFromLS = key => {
+  return JSON.parse(localStorage.getItem(key))
+}
+
+console.log(getKeyFromLS('fullName'));
+*/
 /*
   02
 
@@ -21,7 +33,7 @@
 const input = document.querySelector('[data-js="input"]')
 
 input.addEventListener('input', event => {
-  console.log(event.target.value)
+  console.log(typeof event.target.valueAsNumber)
 })
 
 /*
@@ -39,28 +51,23 @@ input.addEventListener('input', event => {
     retornar 60 e a segunda invocação, 10.
 */
 
-function add100 (num) {
-  return num + 100
-}
+const add100 = num => num + 100
 
-function divByFive (num) {
-  return num / 5
-}
+const divByFive = num => num / 5
 
-function multiplyByThree (num) {
-  return num * 3
-}
+const multiplyByThree = num => num * 3
 
-function multiplyFive (num) {
-  return num * 5
-}
+const multiplyFive = num => num * 5
 
-function addTen (num) {
-  return num + 10
-}
+const addTen = num => num + 10
 
-// console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
-// console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
+const combineOperations = (initValue, arr) =>
+  arr.reduce((acc, func) => func(acc), initValue)
+
+
+
+console.log(combineOperations(0, [add100, divByFive, multiplyByThree]))
+console.log(combineOperations(0, [divByFive, multiplyFive, addTen]))
 
 /*
   04
@@ -101,7 +108,11 @@ const searchAlbum = {
   genre: 'Rock'
 }
 
-if (albums.includes(searchAlbum)) {
+const includesAlbum = (({ id }) => {
+  return albums.some(({ id: albunsID }) => id === albunsID)
+})
+
+if (includesAlbum(searchAlbum)) {
   console.log(`${JSON.stringify(searchAlbum)} existe no array albums.`)
 }
 
@@ -122,6 +133,12 @@ const obj = {
   prop8: { a: 'x', b: 'y' },
 }
 
+const objStr = JSON.stringify(obj, null, 2)
+
+const objCopy = JSON.parse(objStr)
+
+console.log(objStr, objCopy);
+
 /*
   06
 
@@ -132,6 +149,11 @@ const obj = {
 
   Dica: pesquise por Object.entries.
 */
+
+const newElement = ((element, obj) => {
+  const newElement = document.createElement(element);
+  newElement.setAttributeNode()
+})
 
 /*
   07
