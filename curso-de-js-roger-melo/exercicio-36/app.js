@@ -12,7 +12,7 @@ const numbers = [50, 100, 50]
 
 const sum = (x, y, z) => x + y + z
 
-console.log(sum(numbers))
+console.log(sum(...numbers))
 
 /*
   02
@@ -22,6 +22,10 @@ console.log(sum(numbers))
   - Utilizando (também) o spread operator, exiba no console o seu nome com 
     apenas a primeira letra maiúscula.
 */
+const firstName = 'andrew';
+
+
+console.log([...firstName]);
 
 /*
   03
@@ -30,17 +34,19 @@ console.log(sum(numbers))
     - Se for, o objeto deve receber uma propriedade c, que armazena 3;
     - Se não for, o objeto deve receber uma propriedade d, que armazena 4;
   - Não utilize as estruturas condicionais if ou switch.
-*/
+
 
 const randomNumber = Math.round(Math.random() * 100)
 
-const obj = {
+let obj = {
   a: 1,
   b: 2
 }
 
-console.log(obj)
+randomNumber > 50 ?{ ..obj c: 3 } : obj = { d: 4 };
 
+console.log(obj)
+*/
 /*
   04
 

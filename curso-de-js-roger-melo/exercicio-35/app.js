@@ -28,14 +28,14 @@ console.log(getKeyFromLS('fullName'));
     strings em number.
 
   Dica: pesquise por valueAsNumber.
-*/
+
 
 const input = document.querySelector('[data-js="input"]')
 
 input.addEventListener('input', event => {
   console.log(typeof event.target.valueAsNumber)
 })
-
+*/
 /*
   03
 
@@ -133,11 +133,16 @@ const obj = {
   prop8: { a: 'x', b: 'y' },
 }
 
-const objStr = JSON.stringify(obj, null, 2)
-
-const objCopy = JSON.parse(objStr)
-
-console.log(objStr, objCopy);
+const objCopy = {
+  ...obj,
+  prop6: [
+    obj.prop6[0],
+    { ...obj.prop6[1] }
+  ],
+  prop8: {
+    ...obj.prop8
+  }
+}
 
 /*
   06
@@ -150,11 +155,25 @@ console.log(objStr, objCopy);
   Dica: pesquise por Object.entries.
 */
 
-const newElement = ((element, obj) => {
-  const newElement = document.createElement(element);
-  newElement.setAttributeNode()
+const newElement = ((elementName, attributes) => {
+  const element = document.createElement(elementName);
+  const attributesAsArray = Object.entries(attributes);
+
+  attributesAsArray.forEach(([key, value]) => element.setAttribute(key, value));
+
+  return element
+
 })
 
+const input = newElement('input', {
+  type: 'radio',
+  id: 'input1',
+  name: 'main',
+  value: 'principal',
+  for: 'input1',
+  'data-js': 'input1'
+})
+console.log(input);
 /*
   07
 
