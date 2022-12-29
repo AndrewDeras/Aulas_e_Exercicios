@@ -6,14 +6,14 @@
   - Descubra o que o código abaixo está fazendo e faça a invocação da função 
     retornar 200;
   - Não use a sintaxe item[index].
-*/
+
 
 const numbers = [50, 100, 50]
 
 const sum = (x, y, z) => x + y + z
 
 console.log(sum(...numbers))
-
+*/
 /*
   02
 
@@ -21,11 +21,13 @@ console.log(sum(...numbers))
     minúsculas;
   - Utilizando (também) o spread operator, exiba no console o seu nome com 
     apenas a primeira letra maiúscula.
-*/
+
 const firstName = 'andrew';
+const capitalizedName = [firstName[0].toUpperCase(), ...firstName.slice(1)].join('');
+console.log(firstName[0].toUpperCase() + firstName.slice(1));
+console.log(capitalizedName);
 
-
-console.log([...firstName]);
+*/
 
 /*
   03
@@ -36,14 +38,14 @@ console.log([...firstName]);
   - Não utilize as estruturas condicionais if ou switch.
 
 
+  
 const randomNumber = Math.round(Math.random() * 100)
 
 let obj = {
   a: 1,
-  b: 2
+  b: 2,
+  ...randomNumber > 50 ? { c: 3 } : { d: 4 }
 }
-
-randomNumber > 50 ?{ ..obj c: 3 } : obj = { d: 4 };
 
 console.log(obj)
 */
@@ -52,25 +54,24 @@ console.log(obj)
 
   - Descubra o que o código abaixo está fazendo e refatore-o para que o objeto 
     criado permaneça intacto.
+
+
+const third = obj => ({
+  ...obj,
+  d: 3
+})
+
+
+const second = obj => third(obj)
+
+
+const first = obj => second(obj)
+
+
+const object = { k: 't' }
+const object2 = first(object)
+console.log(object, object2)
 */
-
-const h = w => {
-  w.d = 3
-}
-
-const q = f => {
-  h(f)
-}
-
-const i = b => {
-  q(b)
-}
-
-const v = { k: 't' }
-
-i(v)
-console.log(v)
-
 /*
   05
 
@@ -85,7 +86,7 @@ console.log(v)
     '99e89-499958': 31,
     '8596646656666r488': 17
   }
-*/
+
 
 const timestamps = [
   {
@@ -102,6 +103,12 @@ const timestamps = [
   }
 ]
 
+const values = timestamps.reduce((acc, { date, value }) => {
+  acc[date] = value
+  return acc
+}, {})
+console.log(values);
+*/
 /*
   06
 
@@ -120,11 +127,30 @@ const timestamps = [
   
   Dica 1: o método forEach é usado para executar efeitos colaterais;
   Dica 2: o método forEach nunca retorna um valor.
+
+
+let accumulator = 0;
+const oddNumbers = [51, 97, 65, 23];
+
+const forEach = (array, func) => {
+  for (let index = 0; index < array.length; index++) {
+    const item = array[index];
+    func(item, index, array)
+  }
+}
+
+const logMessage = (item, index, array) => {
+  const message =
+    `"${item}" é o ${index + 1}º item do array [${array.join(', ')}]`
+  console.log(message);
+}
+
+const sumArrayItems = item => accumulator += item
+
+forEach(oddNumbers, logMessage)
+forEach(oddNumbers, sumArrayItems)
+console.log(accumulator);
 */
-
-let accumulator = 0
-const oddNumbers = [51, 97, 65, 23]
-
 /*
   07
 
@@ -153,3 +179,31 @@ const oddNumbers = [51, 97, 65, 23]
     3 No passo 3.4, se o slide exibido atualmente não corresponder ao index do 
       1º slide, o slide anterior deve ser exibido.
 */
+const nextBtn = document.querySelector('[data-js="carousel__button--next"]');
+const prevBtn = document.querySelector('[data-js="carousel__button--prev"]');
+
+let slides = document.querySelectorAll('[data-js="carousel__item"]');
+
+const lastSlideIndex = slides.length - 1;
+let currentSlideIndex = 0;
+
+const manipulateSlidesClasses = correctSlideIndex => {
+  slides.forEach(slide => slide.classList.remove('carousel__item--visible'));
+  slides[correctSlideIndex].classList.add('carousel__item--visible');
+}
+
+nextBtn.addEventListener('click', () => {
+  const correctSlideIndex = currentSlideIndex === lastSlideIndex
+    ? currentSlideIndex = 0
+    : ++currentSlideIndex;
+
+  manipulateSlidesClasses(correctSlideIndex);
+});
+
+prevBtn.addEventListener('click', () => {
+  const correctSlideIndex = currentSlideIndex === 0
+    ? currentSlideIndex = lastSlideIndex
+    : --currentSlideIndex;
+
+  manipulateSlidesClasses(correctSlideIndex);
+})
