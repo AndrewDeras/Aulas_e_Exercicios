@@ -206,17 +206,17 @@ const reduce = (array, func, initialValue) => {
   return acc
 }
 
+const createItemBasedProperties = (acc, item) => {
+  acc['number-' + item] = item
+  return acc
+};
+
 const sum = (acc, item) => acc + item;
+const sumItemsPlusIndex = (acc, _, index) => acc + index;
+const sumItemsUsingArrayParam = (acc, _, index, array) => acc + array[index];
 
 console.log(reduce([1, 2, 3], sum, 0)); // 6;
 console.log(reduce([2, 3, 4], sum, 0));
-console.log(reduce(
-  [1, 2],
-  (acc, item) => {
-    acc['number-' + item] = item
-    return acc
-  },
-  {}
-));
-console.log(reduce([1, 2], (acc, item, index) => acc + index, 0));
-console.log(reduce([1, 2], (acc, item, index, array) => acc + array[index], 0));
+console.log(reduce([1, 2], createItemBasedProperties, {}));
+console.log(reduce([1, 2], sumItemsPlusIndex, 0));
+console.log(reduce([1, 2], sumItemsUsingArrayParam, 0));
