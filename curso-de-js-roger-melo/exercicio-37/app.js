@@ -79,7 +79,29 @@ console.log(truthyValues);
     representa as horas, "m" os minutos e "s" os segundos. Exemplo: "22:01:25";
   - Descomente o código e conserte os erros que estão impedindo que ele 
     funcione.
-*/
+  */
+
+const formattedTimeUnits = units => units
+  .map(unit => unit < 10 ? `0${unit}` : unit);
+
+const getTime = () => {
+  const date = new Date()
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const seconds = date.getSeconds();
+  return [hours, minutes, seconds]
+}
+
+const getFormattedTime = template => {
+  const [hours, minutes, seconds] = getTime();
+  const formattedTime = formattedTimeUnits([hours, minutes, seconds])
+
+  return template
+    .split(':')
+    .map((_, index) => formattedTime[index])
+    .join(':')
+
+}
 
 class Clock {
   constructor({ template }) {
@@ -87,26 +109,14 @@ class Clock {
   }
 
   render() {
-    const date = new Date()
-    let hours = date.getHours()
-    let minutes = date.getMinutes()
-    let seconds = date.getSeconds()
-
-    const formattedHours = hours < 10 ? hours = `0${hours}` : hours
-    const formattedMinutes = minutes < 10 ? minutes = `0${minutes}` : minutes
-    const formattedSeconds = seconds < 10 ? seconds = `0${seconds}` : seconds
-
-    const formattedTime = this.template
-      .replace('h', formattedHours)
-      .replace('m', formattedMinutes)
-      .replace('s', formattedSeconds)
-
+    const formattedTime = getFormattedTime(this.template)
     console.log(formattedTime)
   }
 
   start() {
+    const oneSecond = 1000
     this.render()
-    this.timer = setInterval(() => this.render(), 1000)
+    this.timer = setInterval(() => this.render(), oneSecond)
   }
 
   stop() {
@@ -118,7 +128,7 @@ class ExtendedClock extends Clock {
   constructor(options) {
     super(options)
 
-    let { precision = 1000 } = options
+    const { precision = 1000 } = options
     this.precision = precision
   }
 
@@ -128,23 +138,36 @@ class ExtendedClock extends Clock {
   }
 }
 
-const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
+// const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
 
-clock.start()
+// clock.start()
+
 
 /*
   05
-
+ 
   - No index.html há um elemento "textarea" e um parágrafo. A cada vez que um 
     caractere for inserido no textarea, exiba no parágrafo a quantidade de 
     caracteres que o textarea contém.
 */
 
+const textArea = document.querySelector('[data-js="textarea"]');
+const paragraph = document.querySelector('[data-js="paragraph"]');
+
+const showCounterParagraph = ({ target }) => {
+  const currentLength = target.value.length;
+  const maxLength = target.getAttribute('maxlength');
+
+  paragraph.textContent =
+    `${currentLength}/${maxLength}`
+}
+
+textArea.addEventListener('input', showCounterParagraph)
 
 
 /*
   06
-
+ 
   - Já implementamos os métodos forEach, some, map e filter, do zero;
   - Neste exercício, seu desafio será criar, do zero, o método reduce;
   - Implemente uma função "reduce" que possui a mesma funcionalidade do método 
@@ -167,4 +190,33 @@ clock.start()
   - Se você não se lembra como o método reduce funciona, deixarei abaixo do 
     vídeo de correção dos exercícios um link para a aula de introdução ao 
     reduce e um link para a documentação do método no MDN.
+
 */
+
+
+const reduce = (array, func, initialValue) => {
+  let acc = initialValue
+
+  const accCallbackReturn = (item, index, array) => {
+    acc = func(acc, item, index, array)
+  }
+
+  array.forEach(accCallbackReturn)
+
+  return acc
+}
+
+const sum = (acc, item) => acc + item;
+
+console.log(reduce([1, 2, 3], sum, 0)); // 6;
+console.log(reduce([2, 3, 4], sum, 0));
+console.log(reduce(
+  [1, 2],
+  (acc, item) => {
+    acc['number-' + item] = item
+    return acc
+  },
+  {}
+));
+console.log(reduce([1, 2], (acc, item, index) => acc + index, 0));
+console.log(reduce([1, 2], (acc, item, index, array) => acc + array[index], 0));
