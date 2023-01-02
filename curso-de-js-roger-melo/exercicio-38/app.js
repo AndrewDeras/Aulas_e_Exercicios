@@ -9,8 +9,23 @@
     diferentes para a propriedade color de cada carro;
   - Teste o método getColor do prototype dos carros.
 */
+const createObj = (name, color) => {
+  return {
+    name,
+    color,
+    getColor: () => color
+  }
+}
+// createObj.prototype.getColor = function getColor({ color }) {
+//   return color
+// }
 
-
+const car1 = createObj('Audi', 'Black');
+const car2 = createObj('Ferrari', 'Red');
+console.log(car1);
+console.log(car2);
+console.log(car1.getColor());
+console.log(car2.getColor());
 
 /*
   02
@@ -30,11 +45,11 @@ const movie = {
   starringRole: 'Tom Hanks'
 }
 
-function getSummary () {
-  return `${this.title} foi dirigido por ${this.director} e tem ${this.starringRole} no papel principal.`
+function getSummary({ title, director, starringRole }) {
+  return `${title} foi dirigido por ${director} e tem ${starringRole} no papel principal.`
 }
 
-console.log(getSummary())
+console.log(getSummary(movie))
 
 /*
   03
@@ -48,15 +63,22 @@ console.log(getSummary())
   - Descomente o código e crie a função.
 */
 
-/*
+/**/
+const arrayToObj = (array) => {
+  let newObj = {}
+  array.forEach(({ key, value }) => {
+    
+  })
+}
+
 console.log(
   arrayToObj([
-    ['prop1', 'value1'], 
+    ['prop1', 'value1'],
     ['prop2', 'value2'],
     ['prop3', 'value3']
   ])
 )
-*/
+
 
 /*
   04
@@ -87,36 +109,36 @@ const getFormattedTime = template => {
 }
 
 class Clock {
-  constructor ({ template }) {
+  constructor({ template }) {
     this.template = template
   }
 
-  render () {
+  render() {
     const formattedTime = getFormattedTime(this.template)
     console.log(formattedTime)
   }
 
-  start () {
+  start() {
     const oneSecond = 1000
 
     this.render()
     this.timer = setInterval(() => this.render(), oneSecond)
   }
 
-  stop () {
+  stop() {
     clearInterval(this.timer)
   }
 }
 
 class ExtendedClock extends Clock {
-  constructor (options) {
+  constructor(options) {
     super(options)
-    
+
     const { precision = 1000 } = options
     this.precision = precision
   }
 
-  start () {
+  start() {
     this.render()
     this.timer = setInterval(() => this.render(), this.precision)
   }

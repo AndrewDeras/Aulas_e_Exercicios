@@ -70,7 +70,6 @@ console.log(user1);
 
 /*
 herança de classes
-*/
 
 class Mammal {
 	constructor(species, name, age) {
@@ -103,7 +102,94 @@ const mufasa = new Lion('leão', 'Mufasa', 7, false)
 const animals = [zeca, pompeu, angus];
 
 console.log(mufasa, angus);
+*/
 
+/*
+== funções construtoras
+
+class Student {
+	constructor(name, email) {
+		this.name = name;
+		this.email = email;
+	}
+	comment() {
+		return `${this.name} comentou.`
+	}
+	static formatToDataBase(aString) {
+		return aString
+			.toUpperCase()
+			.replaceAll(' ', '_')
+	}
+}
+*/
+/*Prototypes *Herança prototipal
+function Student(name, email) {
+	this.name = name;
+	this.email = email;
+}
+
+Student.prototype.login = function login() {
+	return `${this.name} fez login`
+}
+
+Student.prototype.comment = function comment() {
+	return `${this.name} comentou.`
+}
+
+Student.formatToDataBase = function (aString) {
+	return aString
+		.toUpperCase()
+		.replaceAll(' ', '_')
+}
+
+function TeacherAssiteat(name, email, scheduledWeekPosts) {
+	Student.call(this, name, email);
+	this.scheduledWeekPosts = scheduledWeekPosts
+}
+
+TeacherAssiteat.prototype = Object.create(Student.prototype);
+
+TeacherAssiteat.prototype.giveBadge = function giveBasge({ name }) {
+	return `${this.name} deu uma medalha para ${name}`
+}
+
+const andrewDeras = new Student('Andrew Deras', 'andrewderas7@gmail.com');
+const lindsayDeras = new TeacherAssiteat('Lindsay Deras', 'lindsayderas@gmail.com', false);
+
+console.log(andrewDeras, lindsayDeras);
+console.log(lindsayDeras.giveBadge(andrewDeras));
+console.log(lindsayDeras.login());
+console.log(lindsayDeras.login === andrewDeras.login);
+*/
+
+/*
+*Factory Function e composição de objetos
+*/
+class User {
+	constructor(name, email) {
+		this.name = name;
+		this.email = email
+	}
+}
+
+const createUser = (name, email) => {
+	let counter = 0;
+	return {
+		name,
+		email,
+		incrementar: () => ++counter
+	}
+}
+
+const user = new User('Andrew', 'andrewderas7@gmail.com');
+const user2 = createUser('Andrew 1', 'andrewderas70@gmail.com');
+const user3 = createUser('Andrew 2', 'andrewderas71@gmail.com');
+
+console.log(user, user2);
+console.log(user2.incrementar());
+console.log(user2.incrementar());
+console.log(user3.incrementar());
+console.log(user3.incrementar());
 
 
 
