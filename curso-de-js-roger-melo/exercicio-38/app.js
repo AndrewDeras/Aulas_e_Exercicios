@@ -9,23 +9,21 @@
     diferentes para a propriedade color de cada carro;
   - Teste o método getColor do prototype dos carros.
 */
-const createObj = (name, color) => {
-  return {
-    name,
-    color,
-    getColor: () => color
+const carProto = {
+  getColor() {
+    return this.color
   }
 }
-// createObj.prototype.getColor = function getColor({ color }) {
-//   return color
-// }
 
-const car1 = createObj('Audi', 'Black');
-const car2 = createObj('Ferrari', 'Red');
-console.log(car1);
-console.log(car2);
-console.log(car1.getColor());
-console.log(car2.getColor());
+let mercedesAMG = Object.create(carProto);
+let lamboSV = Object.create(carProto);
+
+mercedesAMG.color = 'Silver';
+lamboSV.color = 'Orange';
+
+console.log(mercedesAMG.getColor());
+console.log(lamboSV.getColor());
+console.log(carProto.isPrototypeOf(mercedesAMG) && carProto.isPrototypeOf(lamboSV));
 
 /*
   02
@@ -45,11 +43,12 @@ const movie = {
   starringRole: 'Tom Hanks'
 }
 
-function getSummary({ title, director, starringRole }) {
+function getSummary() {
+  const { title, director, starringRole } = this
   return `${title} foi dirigido por ${director} e tem ${starringRole} no papel principal.`
 }
 
-console.log(getSummary(movie))
+console.log(getSummary.apply(movie))
 
 /*
   03
@@ -64,12 +63,13 @@ console.log(getSummary(movie))
 */
 
 /**/
-const arrayToObj = (array) => {
-  let newObj = {}
-  array.forEach(({ key, value }) => {
-    
-  })
+const createObj = (acc, [key, value]) => {
+  acc[key] = value
+  return acc
 }
+
+const arrayToObj = array => array.reduce(createObj, {})
+
 
 console.log(
   arrayToObj([
