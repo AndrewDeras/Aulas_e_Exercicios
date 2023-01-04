@@ -21,9 +21,9 @@ let lamboSV = Object.create(carProto);
 mercedesAMG.color = 'Silver';
 lamboSV.color = 'Orange';
 
-console.log(mercedesAMG.getColor());
-console.log(lamboSV.getColor());
-console.log(carProto.isPrototypeOf(mercedesAMG) && carProto.isPrototypeOf(lamboSV));
+// console.log(mercedesAMG.getColor());
+// console.log(lamboSV.getColor());
+// console.log(carProto.isPrototypeOf(mercedesAMG) && carProto.isPrototypeOf(lamboSV));
 
 /*
   02
@@ -48,7 +48,7 @@ function getSummary() {
   return `${title} foi dirigido por ${director} e tem ${starringRole} no papel principal.`
 }
 
-console.log(getSummary.apply(movie))
+// console.log(getSummary.apply(movie))
 
 /*
   03
@@ -71,13 +71,13 @@ const createObj = (acc, [key, value]) => {
 const arrayToObj = array => array.reduce(createObj, {})
 
 
-console.log(
-  arrayToObj([
-    ['prop1', 'value1'],
-    ['prop2', 'value2'],
-    ['prop3', 'value3']
-  ])
-)
+// console.log(
+//   arrayToObj([
+//     ['prop1', 'value1'],
+//     ['prop2', 'value2'],
+//     ['prop3', 'value3']
+//   ])
+// )
 
 
 /*
@@ -85,9 +85,9 @@ console.log(
 
   - Refatore as classes abaixo para factory functions.
 */
+const concatenateZero = unit => unit < 10 ? `0${unit}` : unit;
 
-const formatTimeUnits = units => units
-  .map(unit => unit < 10 ? `0${unit}` : unit)
+const formatTimeUnits = units => units.map(concatenateZero)
 
 const getTime = () => {
   const date = new Date()
@@ -101,52 +101,46 @@ const getTime = () => {
 const getFormattedTime = template => {
   const [hours, minutes, seconds] = getTime()
   const formattedTime = formatTimeUnits([hours, minutes, seconds])
+  const getTimeAsArray = (_, index) => formattedTime[index];
 
   return template
     .split(':')
-    .map((_, index) => formattedTime[index])
+    .map(getTimeAsArray)
     .join(':')
 }
 
-class Clock {
-  constructor({ template }) {
-    this.template = template
-  }
-
+const makeClock = ({ template }) => ({
+  template,
   render() {
     const formattedTime = getFormattedTime(this.template)
-    console.log(formattedTime)
-  }
-
+    console.log(formattedTime);
+  },
   start() {
-    const oneSecond = 1000
+    const oneSecond = 1000;
 
-    this.render()
+    this.render();
     this.timer = setInterval(() => this.render(), oneSecond)
-  }
-
+  },
   stop() {
     clearInterval(this.timer)
   }
-}
+});
 
-class ExtendedClock extends Clock {
-  constructor(options) {
-    super(options)
-
-    const { precision = 1000 } = options
-    this.precision = precision
-  }
-
+const makeExtentedClock = ({ template, precision = 1000 }) => ({
+  precision,
+  ...makeClock({ template }),
   start() {
-    this.render()
+    this.render();
     this.timer = setInterval(() => this.render(), this.precision)
   }
-}
+});
 
-const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
-
-// clock.start()
+// const clock = makeClock({ template: 'h:m:s' });
+// const extentedClock = makeExtentedClock({ template: 'h:m:s', precision: 1000 });
+// clock.start();
+// clock.stop();
+// extentedClock.start();
+// extentedClock.stop();
 
 /*
   05
@@ -187,7 +181,32 @@ const clock = new ExtendedClock({ template: 'h:m:s', precision: 1000 })
         - download, com o valor 'table.csv'.
 */
 
+const table = document.querySelectorAll('tr');
+const exportBtn = document.querySelector('[data-js="export-table-btn"]');
 
+const getCellsText = ({ textContent }) => textContent;
+
+const getStringWithCommas = ({ cells }) => Array.from(cells)
+  .map(getCellsText)
+  .join(',');
+
+const createCSVString = () => Array.from(table)
+  .map(getStringWithCommas)
+  .join('\n');
+
+const setCSVDownload = (CSVString) => {
+  const CSVURI = `data:text/csvcharset=utf-8,${encodeURIComponent(CSVString)}`;
+
+  exportBtn.setAttribute('href', CSVURI);
+  exportBtn.setAttribute('download', 'table.csv');
+}
+
+const exportTable = () => {
+  const CSVString = createCSVString();
+  setCSVDownload(CSVString);
+}
+
+exportBtn.addEventListener('click', exportTable);
 
 /*
   06
