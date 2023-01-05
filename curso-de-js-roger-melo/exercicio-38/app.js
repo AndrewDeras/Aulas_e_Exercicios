@@ -206,7 +206,7 @@ const exportTable = () => {
   setCSVDownload(CSVString);
 }
 
-exportBtn.addEventListener('click', exportTable);
+// exportBtn.addEventListener('click', exportTable);
 
 /*
   06
@@ -264,3 +264,35 @@ exportBtn.addEventListener('click', exportTable);
   PS: o desafio aqui é você implementar essa aplicação sozinho(a), antes 
   de ver as próximas aulas, ok? =)
 */
+
+const currencyOneSelect = document.querySelector('[data-js="currency-one"]');
+const currencyTwoSelect = document.querySelector('[data-js="currency-two"]');
+
+const amount = document.querySelector('[data-js="currency-one-times"]');
+const convertValue = document.querySelector('[data-js="converted-value"]');
+
+const APIKEY = '4f11f6f29f7a360aa00b91a5'
+
+const URL = `https://v6.exchangerate-api.com/v6/${APIKEY}/latest/USD`;
+
+const handleConvertor = async url => {
+  const data = await fetch(url);
+  const jsonData = await data.json();
+  const currencies = await jsonData.conversion_rates;
+
+  const currenciesArr = Object.getOwnPropertyNames(currencies);
+
+  currenciesArr.forEach(currency => {
+    const selectOption = currency === 'USD' ? 'selected' : '';
+    currencyOneSelect.innerHTML += `<option ${selectOption}>${currency}</option>`;
+  });
+
+  currenciesArr.forEach(currency => {
+    const selectOption = currency === 'BRL' ? 'selected' : '';
+    currencyTwoSelect.innerHTML += `<option ${selectOption}>${currency}</option>`;
+  });
+
+}
+handleConvertor(URL)
+
+
