@@ -267,32 +267,74 @@ const exportTable = () => {
 
 const currencyOneSelect = document.querySelector('[data-js="currency-one"]');
 const currencyTwoSelect = document.querySelector('[data-js="currency-two"]');
-
 const amount = document.querySelector('[data-js="currency-one-times"]');
 const convertValue = document.querySelector('[data-js="converted-value"]');
+const convertedPrecision = document.querySelector('[data-js="conversion-precision"]');
+let internalExchangeRate = {}
 
 const APIKEY = '4f11f6f29f7a360aa00b91a5'
 
-const URL = `https://v6.exchangerate-api.com/v6/${APIKEY}/latest/USD`;
+const getUrl = currency => `https://v6.exchangerate-api.com/v6/${APIKEY}/latest/${currency}`;
 
-const handleConvertor = async url => {
-  const data = await fetch(url);
-  const jsonData = await data.json();
-  const currencies = await jsonData.conversion_rates;
+const fetchExchangeRate = async url => {
+  try {
+    const response = await fetch(url)
 
-  const currenciesArr = Object.getOwnPropertyNames(currencies);
+    if (!response.ok) {
+      throw new Error('Sua conexão falhou. Não foi possível obter os dados.')
+    }
 
-  currenciesArr.forEach(currency => {
+    const exchangeRateData = await response.json();
+
+    if (exchangeRateData === 'error') {
+      throw new Error('Erro no request')
+    }
+    console.log(exchangeRateData);
+    return exchangeRateData.conversion_rates
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+const init = async () => {
+
+  internalExchangeRate = { ...(await fetchExchangeRate(getUrl('USD'))) }
+  console.log(internalExchangeRate);
+
+  const keys = Object.keys(internalExchangeRate);
+  console.log(keys);
+
+  keys.forEach(currency => {
     const selectOption = currency === 'USD' ? 'selected' : '';
     currencyOneSelect.innerHTML += `<option ${selectOption}>${currency}</option>`;
   });
 
-  currenciesArr.forEach(currency => {
+  keys.forEach(currency => {
     const selectOption = currency === 'BRL' ? 'selected' : '';
     currencyTwoSelect.innerHTML += `<option ${selectOption}>${currency}</option>`;
   });
+  convertValue.textContent = internalExchangeRate.BRL.toFixed(2)
+  convertedPrecision.textContent = `1 USD = ${(internalExchangeRate.BRL).toFixed(2)} BRL`
 
-}
-handleConvertor(URL)
+};
+amount.addEventListener('input', ({ target }) => {
+  convertValue.textContent = (target.value * internalExchangeRate[currencyTwoSelect.value]).toFixed(2)
+});
+
+currencyTwoSelect.addEventListener('input', ({ target }) => {
+  convertValue.textContent = (internalExchangeRate[target.value] * amount.value).toFixed(2)
+  convertedPrecision.textContent = 
+  `1 ${currencyOneSelect.value} = ${(internalExchangeRate[target.value]).toFixed(2)} ${target.value}`
+})  
+
+currencyOneSelect.addEventListener('input', async ({ target }) => {
+  internalExchangeRate = { ...(await fetchExchangeRate(getUrl(target.value))) }
+  convertValue.textContent = (internalExchangeRate[currencyTwoSelect.value] * amount.value)
+  convertedPrecision = 
+  `1 ${target.value} = ${internalExchangeRate[target.value]} ${target.value}`
+})
+
+init()
+
 
 
