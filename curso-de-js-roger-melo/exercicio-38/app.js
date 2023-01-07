@@ -316,22 +316,23 @@ const init = async () => {
   convertedPrecision.textContent = `1 USD = ${(internalExchangeRate.BRL).toFixed(2)} BRL`
 
 };
+
+const updateExchangeRate = () => {
+  convertValue.textContent = (internalExchangeRate[currencyTwoSelect.value] * amount.value).toFixed(2)
+  convertedPrecision.textContent = `1 ${currencyOneSelect.value} = ${(internalExchangeRate[currencyTwoSelect.value]).toFixed(2)} ${currencyTwoSelect.value}`
+}
 amount.addEventListener('input', ({ target }) => {
   convertValue.textContent = (target.value * internalExchangeRate[currencyTwoSelect.value]).toFixed(2)
 });
 
-currencyTwoSelect.addEventListener('input', ({ target }) => {
-  convertValue.textContent = (internalExchangeRate[target.value] * amount.value).toFixed(2)
-  convertedPrecision.textContent =
-    `1 ${currencyOneSelect.value} = ${(internalExchangeRate[target.value]).toFixed(2)} ${target.value}`
+currencyTwoSelect.addEventListener('input', () => {
+  updateExchangeRate()
 })
 
 currencyOneSelect.addEventListener('input', async ({ target }) => {
   internalExchangeRate = { ...(await fetchExchangeRate(getUrl(target.value))).conversion_rates }
 
-  convertValue.textContent = (internalExchangeRate[currencyTwoSelect.value] * amount.value)
-  convertedPrecision.textContent =
-    `1 ${target.value} = ${internalExchangeRate[currencyTwoSelect.value].toFixed(2)} ${currencyTwoSelect.value}`
+  updateExchangeRate()
 })
 
 init()
