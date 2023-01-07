@@ -270,6 +270,7 @@ const currencyTwoSelect = document.querySelector('[data-js="currency-two"]');
 const amount = document.querySelector('[data-js="currency-one-times"]');
 const convertValue = document.querySelector('[data-js="converted-value"]');
 const convertedPrecision = document.querySelector('[data-js="conversion-precision"]');
+
 let internalExchangeRate = {}
 
 const APIKEY = '4f11f6f29f7a360aa00b91a5'
@@ -289,30 +290,28 @@ const fetchExchangeRate = async url => {
     if (exchangeRateData === 'error') {
       throw new Error('Erro no request')
     }
-    console.log(exchangeRateData);
-    return exchangeRateData.conversion_rates
+
+    return exchangeRateData
   } catch (error) {
     console.log(error);
   }
 }
 
+const addSelectOptions = (currency, localCurrency, selectTag) => {
+  const selectOption = currency === localCurrency ? 'selected' : '';
+  selectTag.innerHTML += `<option ${selectOption}>${currency}</option>`;
+}
+
 const init = async () => {
 
-  internalExchangeRate = { ...(await fetchExchangeRate(getUrl('USD'))) }
-  console.log(internalExchangeRate);
+  internalExchangeRate = { ...(await fetchExchangeRate(getUrl('USD'))).conversion_rates }
 
   const keys = Object.keys(internalExchangeRate);
   console.log(keys);
 
-  keys.forEach(currency => {
-    const selectOption = currency === 'USD' ? 'selected' : '';
-    currencyOneSelect.innerHTML += `<option ${selectOption}>${currency}</option>`;
-  });
+  keys.forEach(currency => addSelectOptions(currency, 'USD', currencyOneSelect));
+  keys.forEach(currency => addSelectOptions(currency, 'BRL', currencyTwoSelect));
 
-  keys.forEach(currency => {
-    const selectOption = currency === 'BRL' ? 'selected' : '';
-    currencyTwoSelect.innerHTML += `<option ${selectOption}>${currency}</option>`;
-  });
   convertValue.textContent = internalExchangeRate.BRL.toFixed(2)
   convertedPrecision.textContent = `1 USD = ${(internalExchangeRate.BRL).toFixed(2)} BRL`
 
@@ -323,15 +322,16 @@ amount.addEventListener('input', ({ target }) => {
 
 currencyTwoSelect.addEventListener('input', ({ target }) => {
   convertValue.textContent = (internalExchangeRate[target.value] * amount.value).toFixed(2)
-  convertedPrecision.textContent = 
-  `1 ${currencyOneSelect.value} = ${(internalExchangeRate[target.value]).toFixed(2)} ${target.value}`
-})  
+  convertedPrecision.textContent =
+    `1 ${currencyOneSelect.value} = ${(internalExchangeRate[target.value]).toFixed(2)} ${target.value}`
+})
 
 currencyOneSelect.addEventListener('input', async ({ target }) => {
-  internalExchangeRate = { ...(await fetchExchangeRate(getUrl(target.value))) }
+  internalExchangeRate = { ...(await fetchExchangeRate(getUrl(target.value))).conversion_rates }
+
   convertValue.textContent = (internalExchangeRate[currencyTwoSelect.value] * amount.value)
-  convertedPrecision = 
-  `1 ${target.value} = ${internalExchangeRate[target.value]} ${target.value}`
+  convertedPrecision.textContent =
+    `1 ${target.value} = ${internalExchangeRate[currencyTwoSelect.value].toFixed(2)} ${currencyTwoSelect.value}`
 })
 
 init()
